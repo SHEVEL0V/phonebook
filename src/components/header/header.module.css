@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  
+    background-color: rgba(157, 222, 190, 0.437);
+    border-radius: 10px;
+}
+
