@@ -1,15 +1,32 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filterValue } from './contacts-reduser';
-import { contactsApi, userApi } from 'redux/contacts-RTK';
-import user from './contacts-slace';
+import { persistStore, persistReducer, PERSIST } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { filterValue, loading } from './contacts-reduser';
+import { user, contacts } from './contacts-slace';
+
+const userReduser = user.reducer;
+const contactsReduse = contacts.reducer;
+
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'isLoggedIn'],
+};
 
 export const store = configureStore({
   reducer: {
     filterValue,
-    user: user.reducer,
-
-    // [contactsApi.reducerPath]: contactsApi.reducer,
+    loading,
+    auth: persistReducer(persistConfig, userReduser),
+    contacts: contactsReduse,
   },
-  // middleware: getDefaultMiddleware =>
-  //   getDefaultMiddleware().concat(contactsApi.middleware),
+
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [PERSIST],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

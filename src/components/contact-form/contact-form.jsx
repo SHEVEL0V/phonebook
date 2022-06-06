@@ -1,27 +1,32 @@
 import React, { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useDispatch } from 'react-redux';
+
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
-import {
-  useAddContactsMutation,
-  useGetContactsQuery,
-} from 'redux/contacts-RTK';
-import s from './form.module.css';
+import { addContact } from 'redux/contact-operations';
+import { useSelector } from 'react-redux';
+import s from './contact-form.module.css';
 
 export default function Form() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const { data } = useGetContactsQuery('');
+  const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.contacts.loading);
 
-  const [updatePost, { isLoading: isUpdating }] =
-    useAddContactsMutation();
+  // const { data } = useGetContactsQuery('');
+
+  // const [updatePost, { isLoading: isUpdating }] =
+  //   useAddContactsMutation();
 
   const onSubmit = () => {
     removeState();
+    dispatch(addContact({ name, number }));
 
     if (
-      data.every(e => e.name.toLowerCase() !== name.toLowerCase())
+      true
+      // data.every(e => e.name.toLowerCase() !== name.toLowerCase())
     ) {
-      updatePost({ name, phone });
+      // addContact({ name, number });
     } else {
       alert(`"${name}" is already in contact!`);
     }
@@ -29,7 +34,7 @@ export default function Form() {
 
   const removeState = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -62,14 +67,14 @@ export default function Form() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={e => setPhone(e.target.value)}
-          value={phone}
+          onChange={e => setNumber(e.target.value)}
+          value={number}
         />
       </label>
       <button className={s.button} type="sabmit">
         add contact
         <span>
-          {isUpdating ? (
+          {loading ? (
             <ClipLoader size={15} />
           ) : (
             <BsFillArrowRightSquareFill />

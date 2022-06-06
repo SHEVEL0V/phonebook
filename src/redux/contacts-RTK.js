@@ -6,12 +6,17 @@ import {
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://62961892810c00c1cb6f111a.mockapi.io/contacts/',
+    baseUrl: 'https://connections-api.herokuapp.com',
   }),
   tagTypes: ['Key'],
   endpoints: builder => ({
-    getContacts: builder.query({
-      query: () => `contacts/`,
+    loginUser: builder.query({
+      query: login => ({
+        url: '/users/signup',
+        method: 'POST',
+        body: login,
+      }),
+
       providesTags: ['Key'],
     }),
 

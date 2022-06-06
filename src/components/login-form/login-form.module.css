@@ -1,0 +1,29 @@
+
+.container{
+    display: flex;
+    padding: 50px;
+    background-color: antiquewhite;
+}
+
+.items{
+    display: block;
+    width: 200px;
+   
+}
+.button{
+    width: 100px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: rgba(0, 0, 255, 0.331);
+    border-radius: 5px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    margin-left: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 255, 0.227);
+}

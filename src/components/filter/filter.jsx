@@ -8,7 +8,9 @@ export default function Filter() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addValueFilter(value.trim()));
+    if (value) {
+      dispatch(addValueFilter(value.trim()));
+    }
   }, [dispatch, value]);
 
   return (
