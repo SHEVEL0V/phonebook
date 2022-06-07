@@ -9,17 +9,19 @@ export default function ContactCard({ card, index }) {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.contacts.loading);
   const numberEl = index + 1;
-  const { name, phone, id } = card;
+  const { name, number, id } = card;
+
+  console.log('card');
 
   return (
     <li className={s.item}>
       <span className={s.number}>{numberEl}</span>
       <span>
-        <b className={s.text}>name:</b> {name}{' '}
+        <b className={s.text}>name:</b> {name}
       </span>
       <span>
         <b className={s.text}>tel:</b>
-        {phone}
+        {number}
       </span>
       <button
         className={s.button}

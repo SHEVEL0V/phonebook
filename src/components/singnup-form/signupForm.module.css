@@ -1,7 +1,10 @@
 
 .form{
+    width: 450px;
     position: relative;
-    padding: 100px;
+    
+    padding: 20px;
+    padding-top: 40px;
     display: block;
     margin-left: auto;
     
@@ -16,16 +19,24 @@
 
 .items{
     display: block;
-    width: 200px;
+  
    
+}
+.input{
+    display: block;
+    width: 400px;
+    height: 30px;
 }
 .button{
     width: 100px;
     height: 40px;
     margin-top: 30px;
-    background-color: rgba(0, 0, 255, 0.331);
+    background-color: rgba(0, 0, 0, 0.116);
     border-radius: 5px;
+    
 }
+.button:active{
+    background-color: rgba(0, 0, 0, 0.316)}
 
 .buttonClose{
     position: absolute;
@@ -38,8 +49,12 @@
    justify-content: center;
    align-items: center;
    background-color: rgba(0, 0, 0, 0.116);
+   border: 0;
     
 }
+.buttonClose:active{
+    background-color: rgba(0, 0, 0, 0.316)}
+    
 .logo{
     display: flex;
     align-items: center;

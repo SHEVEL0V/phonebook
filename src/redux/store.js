@@ -16,7 +16,6 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     filterValue,
-    loading,
     auth: persistReducer(persistConfig, userReduser),
     contacts: contactsReduse,
   },

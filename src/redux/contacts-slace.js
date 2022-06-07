@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  singnupUser,
   loginUser,
   logoutUser,
   getContact,
@@ -12,12 +13,20 @@ const initialUserState = {
   token: null,
   isLoggedIn: false,
   loadinng: false,
+  status: '',
 };
 
 const user = createSlice({
   name: 'userSlice',
   initialState: initialUserState,
   extraReducers: {
+    [singnupUser.pending]: state => {
+      state.loadinng = true;
+    },
+    [singnupUser.fulfilled]: (state, { meta }) => {
+      state.loadinng = false;
+      state.status = meta;
+    },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.user = payload.user;
       state.token = payload.token;

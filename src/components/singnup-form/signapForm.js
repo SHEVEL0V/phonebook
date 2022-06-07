@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { loginUser, logoutUser } from 'redux/contact-operations';
+import { IoClose } from 'react-icons/io5';
+import ClipLoader from 'react-spinners/ClipLoader';
+
+import { singnupUser } from 'redux/contact-operations';
+import { isLoggedIn } from 'redux/contacts-selectors';
 import s from './signupForm.module.css';
 
 export default function SignupForm({ onClose }) {
@@ -12,11 +16,10 @@ export default function SignupForm({ onClose }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(loginUser({ name, email, password }));
+    dispatch(singnupUser({ name, email, password }));
     getName('');
     getEmail('');
     getPassword('');
-    console.log('yes');
   };
 
   return (
@@ -26,12 +29,14 @@ export default function SignupForm({ onClose }) {
         type="button"
         onClick={onClose}
       >
-        +
+        <IoClose />
       </button>
       <label className={s.items}>
         name:
         <input
+          className={s.input}
           name="name"
+          placeholder=" name"
           onChange={e => getName(e.target.value)}
           value={name}
         ></input>
@@ -39,7 +44,9 @@ export default function SignupForm({ onClose }) {
       <label className={s.items}>
         email:
         <input
+          className={s.input}
           name="email"
+          placeholder=" email"
           onChange={e => getEmail(e.target.value)}
           value={email}
         ></input>
@@ -47,13 +54,15 @@ export default function SignupForm({ onClose }) {
       <label className={s.items}>
         password:
         <input
+          className={s.input}
           name="password"
+          placeholder=" password"
           onChange={e => getPassword(e.target.value)}
           value={password}
         ></input>
       </label>
       <button className={s.button} type="submit">
-        sinup
+        sinup{useSelector(isLoggedIn) ? <ClipLoader size={15} /> : ''}
       </button>
     </form>
   );
