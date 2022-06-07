@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { loginUser, logoutUser } from 'redux/contact-operations';
-import s from './login-form.module.css';
+import s from './signupForm.module.css';
 
-export default function LoginForm() {
+export default function SignupForm({ onClose }) {
+  const [name, getName] = useState('');
   const [email, getEmail] = useState('');
   const [password, getPassword] = useState('');
 
@@ -11,13 +12,8 @@ export default function LoginForm() {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(
-      loginUser({
-        email: 'Ashevelov@mail.com',
-        // name: 'Ashevelov',
-        password: '123456789',
-      }),
-    );
+    dispatch(loginUser({ name, email, password }));
+    getName('');
     getEmail('');
     getPassword('');
     console.log('yes');
@@ -25,14 +21,21 @@ export default function LoginForm() {
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
-      {/* <label className={s.items}>
-          name:
-          <input
-            name="name"
-            onChange={e => getEmail(e.target.value)}
-            value={email}
-          ></input>
-        </label> */}
+      <button
+        className={s.buttonClose}
+        type="button"
+        onClick={onClose}
+      >
+        +
+      </button>
+      <label className={s.items}>
+        name:
+        <input
+          name="name"
+          onChange={e => getName(e.target.value)}
+          value={name}
+        ></input>
+      </label>
       <label className={s.items}>
         email:
         <input
@@ -50,7 +53,7 @@ export default function LoginForm() {
         ></input>
       </label>
       <button className={s.button} type="submit">
-        login
+        sinup
       </button>
     </form>
   );

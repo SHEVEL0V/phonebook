@@ -1,0 +1,18 @@
+.container{
+    display: block;
+    height: 500px;
+}
+
+.title{
+    font-size: 100px;
+    text-align: center;
+}
+
+.button{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
