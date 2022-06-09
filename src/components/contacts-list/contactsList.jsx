@@ -1,25 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ContactCard from './contactCard';
-
-import { getContact } from 'redux/contact-operations';
+import { loadingFetch } from 'redux/contacts/contacts-selectors';
+import { data } from 'redux/contacts/contacts-selectors';
+import { getContact } from 'redux/contacts/contact-operations';
 import s from './contactsList.module.css';
 
 export default function ContactsList() {
-  const loading = useSelector(state => state.contacts.loading);
-  const contacts = useSelector(state => state.contacts.data);
+  const loading = useSelector(loadingFetch);
+  const contacts = useSelector(data);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('fetch list');
+
     dispatch(getContact());
-  }, [dispatch, loading]);
+  }, [dispatch]);
 
   const filter = useSelector(state => state.filterValue);
 
-  if (false) {
+  if (loading) {
     return (
       <div className={s.loader}>
         <ClipLoader />
@@ -33,7 +36,7 @@ export default function ContactsList() {
     );
 
     return (
-      <div>
+      <div className={s.container}>
         <h2>Contacts:</h2>
         <ul>
           {filterList.map((el, inx) => (

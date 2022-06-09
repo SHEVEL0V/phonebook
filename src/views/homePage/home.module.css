@@ -8,11 +8,7 @@
     text-align: center;
 }
 
-.button{
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    display: block;
+.center{
     margin-left: auto;
     margin-right: auto;
 }

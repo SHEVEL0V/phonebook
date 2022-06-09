@@ -1,11 +1,9 @@
-import s from './header.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from 'redux/contact-operations';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'components/avatar/avatar';
 import LoginForm from 'components/login-form/login-form';
-import { isLoggedIn } from 'redux/contacts-selectors';
+import { isLoggedIn } from 'redux/user/user-selectors';
+import s from './header.module.css';
 
 export default function Header() {
   const isLogged = useSelector(isLoggedIn);

@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { loginUser, logoutUser } from 'redux/contact-operations';
+import { loginUser } from 'redux/user/user-operations';
 import s from './login-form.module.css';
 
 export default function LoginForm() {
@@ -25,14 +25,6 @@ export default function LoginForm() {
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
-      {/* <label className={s.items}>
-          name:
-          <input
-            name="name"
-            onChange={e => getEmail(e.target.value)}
-            value={email}
-          ></input>
-        </label> */}
       <label className={s.items}>
         email:
         <input

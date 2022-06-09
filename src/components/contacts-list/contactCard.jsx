@@ -2,16 +2,18 @@ import PropTypes from 'prop-types';
 import { AiFillDelete } from 'react-icons/ai';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contact-operations';
+import { deleteContact } from 'redux/contacts/contact-operations';
+import { loadingDelete } from 'redux/contacts/contacts-selectors';
 import s from './contactsList.module.css';
+import { useState } from 'react';
 
 export default function ContactCard({ card, index }) {
+  const [currentBtnId, setCurrentBtnId] = useState(null);
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.contacts.loading);
-  const numberEl = index + 1;
-  const { name, number, id } = card;
+  const loading = useSelector(loadingDelete);
 
-  console.log('card');
+  const { name, number, id } = card;
+  const numberEl = index + 1;
 
   return (
     <li className={s.item}>
@@ -25,10 +27,18 @@ export default function ContactCard({ card, index }) {
       </span>
       <button
         className={s.button}
+        id={id}
         type="button"
-        onClick={() => dispatch(deleteContact(id))}
+        onClick={e => {
+          setCurrentBtnId(e.currentTarget.id);
+          dispatch(deleteContact(id));
+        }}
       >
-        {loading ? <ClipLoader size={10} /> : <AiFillDelete />}
+        {loading && currentBtnId === id ? (
+          <ClipLoader size={10} />
+        ) : (
+          <AiFillDelete />
+        )}
       </button>
     </li>
   );

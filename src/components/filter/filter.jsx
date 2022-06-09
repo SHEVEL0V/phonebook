@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addValueFilter } from 'redux/contacts-action';
+import { addValueFilter } from 'redux/filter/filter-action';
 import s from './filter.module.css';
 
 export default function Filter() {

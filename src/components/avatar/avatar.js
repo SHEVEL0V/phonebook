@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userName } from 'redux/contacts-selectors';
-import { logoutUser } from 'redux/contact-operations';
+import { userName } from 'redux/user/user-selectors';
+import { logoutUser } from 'redux/user/user-operations';
+import Button from 'components/button/button';
 import s from './avatar.module.css';
 
 export default function Avatar() {
@@ -15,12 +16,9 @@ export default function Avatar() {
   };
   return (
     <div className={s.container}>
-      <button className={s.button} type="button" onClick={logOut}>
-        Out
-      </button>
-      <div className={s.logo}>
-        <b>{name ? name : 'name'}</b>
-      </div>
+      <Button onClick={logOut}>
+        <p>{name ? name : 'name'}</p>-<b>Out</b>
+      </Button>
     </div>
   );
 }

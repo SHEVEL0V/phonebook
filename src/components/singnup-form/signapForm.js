@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
-
-import { singnupUser } from 'redux/contact-operations';
-import { isLoggedIn } from 'redux/contacts-selectors';
+import Button from 'components/button/button';
+import { singnupUser } from 'redux/user/user-operations';
+import { isLoggedIn } from 'redux/user/user-selectors';
 import s from './signupForm.module.css';
 
 export default function SignupForm({ onClose }) {
@@ -61,9 +61,9 @@ export default function SignupForm({ onClose }) {
           value={password}
         ></input>
       </label>
-      <button className={s.button} type="submit">
+      <Button type="submit">
         sinup{useSelector(isLoggedIn) ? <ClipLoader size={15} /> : ''}
-      </button>
+      </Button>
     </form>
   );
 }

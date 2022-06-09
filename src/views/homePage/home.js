@@ -1,9 +1,10 @@
 import s from './home.module.css';
 import { useSelector } from 'react-redux';
-import { isLoggedIn, userName } from 'redux/contacts-selectors';
+import { isLoggedIn, userName } from 'redux/user/user-selectors';
 import { useState } from 'react';
 import Modal from 'components/modal/modal';
 import SignupForm from 'components/singnup-form/signapForm';
+import Button from 'components/button/button';
 
 export default function HomePge() {
   const [modal, setModal] = useState(false);
@@ -22,13 +23,9 @@ export default function HomePge() {
               <SignupForm onClose={onModal} />
             </Modal>
           )}
-          <button
-            className={s.button}
-            type="button"
-            onClick={() => setModal(true)}
-          >
-            Signap
-          </button>
+          <Button onClick={() => setModal(true)}>
+            <b>Signap</b>
+          </Button>
         </>
       )}
     </div>

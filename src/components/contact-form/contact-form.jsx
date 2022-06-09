@@ -3,30 +3,25 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch } from 'react-redux';
 
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
-import { addContact } from 'redux/contact-operations';
+import { addContact } from 'redux/contacts/contact-operations';
 import { useSelector } from 'react-redux';
+import { loadingAdd, data } from 'redux/contacts/contacts-selectors';
 import s from './contact-form.module.css';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.contacts.loading);
-
-  // const { data } = useGetContactsQuery('');
-
-  // const [updatePost, { isLoading: isUpdating }] =
-  //   useAddContactsMutation();
+  const loading = useSelector(loadingAdd);
+  const contacts = useSelector(data);
 
   const onSubmit = () => {
     removeState();
-    dispatch(addContact({ name, number }));
 
     if (
-      true
-      // data.every(e => e.name.toLowerCase() !== name.toLowerCase())
+      contacts.every(e => e.name.toLowerCase() !== name.toLowerCase())
     ) {
-      // addContact({ name, number });
+      dispatch(addContact({ name, number }));
     } else {
       alert(`"${name}" is already in contact!`);
     }

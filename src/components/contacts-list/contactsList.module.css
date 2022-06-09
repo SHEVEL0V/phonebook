@@ -1,3 +1,6 @@
+.container{
+    padding-left: 20px;
+}
 .item{
     position: relative;
     display: flex;
@@ -44,7 +47,7 @@
     position: absolute;
     width: 35px;
     height: 35px;
-    right: -60px;
+    right: -45px;
     top: 50%;
     transform: translate( 0%,-50%);
 
