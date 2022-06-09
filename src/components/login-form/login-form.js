@@ -11,16 +11,17 @@ export default function LoginForm() {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(
-      loginUser({
-        email: 'Ashevelov@mail.com',
-        // name: 'Ashevelov',
-        password: '123456789',
-      }),
-    );
+    if ((email, password)) {
+      dispatch(
+        loginUser({
+          email,
+          password,
+        }),
+      );
+    }
+
     getEmail('');
     getPassword('');
-    console.log('yes');
   };
 
   return (

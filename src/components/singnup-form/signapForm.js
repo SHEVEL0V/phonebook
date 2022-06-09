@@ -61,8 +61,8 @@ export default function SignupForm({ onClose }) {
           value={password}
         ></input>
       </label>
-      <Button type="submit">
-        sinup{useSelector(isLoggedIn) ? <ClipLoader size={15} /> : ''}
+      <Button type="submit" onClick={onSubmit}>
+        sinup
       </Button>
     </form>
   );

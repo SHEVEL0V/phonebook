@@ -15,8 +15,6 @@ export default function ContactsList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('fetch list');
-
     dispatch(getContact());
   }, [dispatch]);
 

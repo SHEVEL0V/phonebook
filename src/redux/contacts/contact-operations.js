@@ -16,7 +16,8 @@ const getContact = createAsyncThunk('getContact', async () => {
 const addContact = createAsyncThunk('addContact', async contact => {
   try {
     await axios.post('/contacts', contact);
-    const data = getContact;
+    await axios.get('/contacts');
+    const { data } = await axios.get('/contacts');
     return data;
   } catch {
     console.log('add error!!!!');
@@ -28,7 +29,7 @@ const deleteContact = createAsyncThunk(
   async contact => {
     try {
       await axios.delete(`/contacts/${contact}`);
-      const data = getContact;
+      const { data } = await axios.get('/contacts');
       return data;
     } catch {
       console.log('delete error!!!!');
