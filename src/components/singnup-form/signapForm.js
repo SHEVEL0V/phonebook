@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { loading, error } from 'redux/user/user-selectors';
 import Button from 'components/button/button';
 import { singnupUser } from 'redux/user/user-operations';
-import { isLoggedIn } from 'redux/user/user-selectors';
 import s from './signupForm.module.css';
 
 export default function SignupForm({ onClose }) {
@@ -21,6 +22,10 @@ export default function SignupForm({ onClose }) {
     getEmail('');
     getPassword('');
   };
+
+  if (useSelector(error)) {
+    Notify.warning('error created');
+  }
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
@@ -61,8 +66,12 @@ export default function SignupForm({ onClose }) {
           value={password}
         ></input>
       </label>
-      <Button type="submit" onClick={onSubmit}>
-        sinup
+      <Button
+        disabled={name === '' || email === '' || password === ''}
+        type="submit"
+        onClick={onSubmit}
+      >
+        sinup{useSelector(loading) && <ClipLoader size={15} />}
       </Button>
     </form>
   );

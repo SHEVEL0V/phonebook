@@ -3,13 +3,15 @@ import {
   singnupUser,
   loginUser,
   logoutUser,
+  fetchCurentUser,
 } from './user-operations';
 
 const initialUserState = {
-  user: { name: null, email: null, password: null },
+  user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  loadinng: false,
+  loading: false,
+  error: false,
 };
 
 const user = createSlice({
@@ -17,20 +19,46 @@ const user = createSlice({
   initialState: initialUserState,
   extraReducers: {
     [singnupUser.pending]: state => {
-      state.loadinng = true;
+      state.loading = true;
     },
     [singnupUser.fulfilled]: state => {
-      state.loadinng = false;
+      state.loading = false;
+    },
+    [singnupUser.rejected]: state => {
+      state.loading = false;
+      state.error = true;
     },
     [loginUser.pending]: state => {
-      state.loadinng = true;
+      state.loading = true;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
+      state.isLoggedIn = true;
+      state.loading = false;
       state.user = payload.user;
       state.token = payload.token;
-      state.isLoggedIn = true;
+    },
+    [loginUser.rejected]: state => {
+      state.loading = false;
+      state.error = true;
     },
     [logoutUser.fulfilled]: () => initialUserState,
+    [logoutUser.rejected]: state => {
+      state.isLoggedIn = false;
+      state.error = true;
+    },
+    [fetchCurentUser.pending]: state => {
+      state.isLoggedIn = false;
+      state.loading = true;
+    },
+    [fetchCurentUser.fulfilled]: state => {
+      state.isLoggedIn = true;
+      state.loading = false;
+    },
+    [fetchCurentUser.rejected]: state => {
+      state.isLoggedIn = false;
+      state.loading = false;
+      state.error = true;
+    },
   },
 });
 
