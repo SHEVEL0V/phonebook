@@ -21,7 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {useSelector(isLoggedIn) && (
-          <Route path="contacts" element={<ContactsPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
         )}
         <Route path="*" element={<h2>Address not found</h2>} />
       </Routes>

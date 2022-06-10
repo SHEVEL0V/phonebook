@@ -47,15 +47,12 @@ const user = createSlice({
       state.error = true;
     },
     [fetchCurentUser.pending]: state => {
-      state.isLoggedIn = false;
       state.loading = true;
     },
     [fetchCurentUser.fulfilled]: state => {
-      state.isLoggedIn = true;
       state.loading = false;
     },
     [fetchCurentUser.rejected]: state => {
-      state.isLoggedIn = false;
       state.loading = false;
       state.error = true;
     },
