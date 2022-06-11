@@ -13,6 +13,7 @@ import PrivateRoute from './components/Private-route';
 export default function App() {
   const status = useSelector(isLoggedIn);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (status) {
       dispatch(fetchCurentUser());

@@ -63,7 +63,7 @@ export default function SignupForm({ onClose }) {
         ></input>
       </label>
       <button
-        className={s.buuton}
+        className={s.button}
         disabled={name === '' || email === '' || password === ''}
         type="submit"
         onClick={onSubmit}
