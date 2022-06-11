@@ -19,14 +19,14 @@ export default function Modal({ onClose, children }) {
     };
   }, [onClose]);
 
-  function handelBackdropClick(e) {
-    if (e.currentTarget === e.target) {
-      onClose();
-    }
-  }
+  // function handelBackdropClick(e) {
+  //   if (e.currentTarget === e.target) {
+  //     onClose();
+  //   }}
+  
 
   return createPortal(
-    <div className={s.backdrop} onClick={handelBackdropClick}>
+    <div className={s.backdrop} >
       <div className={s.content}>{children}</div>
     </div>,
     modalRoot,

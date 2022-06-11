@@ -1,16 +1,14 @@
-import s from './home.module.css';
 import { useSelector } from 'react-redux';
 import { isLoggedIn, userName } from 'redux/user/user-selectors';
 import { useState } from 'react';
 import Modal from 'components/modal/modal';
-import SignupForm from 'components/singnup-form/signapForm';
-import Button from 'components/button/button';
+import SignupForm from 'components/singnup-form/signup-form';
+import s from './home-page.module.css';
 
 export default function HomePge() {
   const [modal, setModal] = useState(false);
   const status = useSelector(isLoggedIn);
   const name = useSelector(userName);
-
   const onModal = () => setModal(!modal);
 
   return (
@@ -23,9 +21,9 @@ export default function HomePge() {
               <SignupForm onClose={onModal} />
             </Modal>
           )}
-          <Button onClick={() => setModal(true)}>
-            <b>Signap</b>
-          </Button>
+          <button className={s.button} onClick={() => setModal(true)}>
+            <b>Signup</b>
+          </button>
         </>
       )}
     </div>

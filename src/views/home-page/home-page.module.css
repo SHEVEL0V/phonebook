@@ -1,7 +1,16 @@
 .container {
-  display: flex;
-  align-items: center;
+  display: block;
+  height: 500px;
+}
+
+.title {
+  font-size: 100px;
+  text-align: center;
+}
+
+.center {
   margin-left: auto;
+  margin-right: auto;
 }
 .button {
   display: flex;

@@ -16,7 +16,12 @@ const singnupUser = createAsyncThunk(
   'ruser/register',
   async credentitals => {
     try {
-      const data = await axios.post('/users/signup', credentitals);
+      const { data } = await axios.post(
+        '/users/signup',
+        credentitals,
+      );
+      console.log(data);
+      token.set(data.token);
       return data;
     } catch {
       console.log('signup error!!!!');

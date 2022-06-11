@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading, error } from 'redux/user/user-selectors';
@@ -11,7 +10,6 @@ import s from './login-form.module.css';
 export default function LoginForm() {
   const [email, getEmail] = useState('');
   const [password, getPassword] = useState('');
-
   const dispatch = useDispatch();
 
   const onSubmit = e => {
@@ -23,11 +21,12 @@ export default function LoginForm() {
           password,
         }),
       );
-    }
 
-    getEmail('');
-    getPassword('');
+      getEmail('');
+      getPassword('');
+    }
   };
+
   if (useSelector(error)) {
     Notify.warning('error created');
   }
@@ -45,6 +44,7 @@ export default function LoginForm() {
       <label className={s.items}>
         password:
         <input
+          type="password"
           name="password"
           onChange={e => getPassword(e.target.value)}
           value={password}

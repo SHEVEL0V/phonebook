@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading, error } from 'redux/user/user-selectors';
-import Button from 'components/button/button';
 import { singnupUser } from 'redux/user/user-operations';
-import s from './signupForm.module.css';
+import s from './signup-form.module.css';
 
 export default function SignupForm({ onClose }) {
   const [name, getName] = useState('');
@@ -18,9 +17,6 @@ export default function SignupForm({ onClose }) {
   const onSubmit = e => {
     e.preventDefault();
     dispatch(singnupUser({ name, email, password }));
-    getName('');
-    getEmail('');
-    getPassword('');
   };
 
   if (useSelector(error)) {
@@ -66,13 +62,14 @@ export default function SignupForm({ onClose }) {
           value={password}
         ></input>
       </label>
-      <Button
+      <button
+        className={s.buuton}
         disabled={name === '' || email === '' || password === ''}
         type="submit"
         onClick={onSubmit}
       >
-        sinup{useSelector(loading) && <ClipLoader size={15} />}
-      </Button>
+        signup{useSelector(loading) && <ClipLoader size={15} />}
+      </button>
     </form>
   );
 }

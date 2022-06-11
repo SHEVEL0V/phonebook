@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { addValueFilter } from 'redux/filter/filter-action';
 import s from './filter.module.css';
 
 export default function Filter() {
-  const [value, setValue] = useState('');
   const dispatch = useDispatch();
+  const value = useSelector(state => state.filterValue);
 
-  useEffect(() => {
-    if (value) {
-      dispatch(addValueFilter(value.trim()));
-    }
-  }, [dispatch, value]);
-
+  const setValue = e => {
+    const value = e.target.value;
+    dispatch(addValueFilter(value.trim()));
+  };
   return (
     <div className={s.thamb}>
       <label>
@@ -21,7 +19,7 @@ export default function Filter() {
           className={s.input}
           tyte="text"
           name="filter"
-          onChange={e => setValue(e.target.value)}
+          onChange={setValue}
           value={value}
         ></input>
       </label>

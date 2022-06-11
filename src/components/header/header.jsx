@@ -6,19 +6,11 @@ import { isLoggedIn } from 'redux/user/user-selectors';
 import s from './header.module.css';
 
 export default function Header() {
-  const isLogged = useSelector(isLoggedIn);
+  const status = useSelector(isLoggedIn);
+
   return (
     <div className={s.container}>
-      <NavLink
-        to="/"
-        className={s.nav}
-        style={({ isActive }) =>
-          isActive ? { color: 'red' } : undefined
-        }
-      >
-        Home
-      </NavLink>
-      {isLogged && (
+      {status ? (
         <NavLink
           to="/contacts"
           className={s.nav}
@@ -26,10 +18,20 @@ export default function Header() {
             isActive ? { color: 'red' } : undefined
           }
         >
-          Conntacts
+          Contacts
+        </NavLink>
+      ) : (
+        <NavLink
+          to="/"
+          className={s.nav}
+          style={({ isActive }) =>
+            isActive ? { color: 'red' } : undefined
+          }
+        >
+          Home
         </NavLink>
       )}
-      {isLogged ? <Avatar /> : <LoginForm />}
+      {status ? <Avatar /> : <LoginForm />}
     </div>
   );
 }

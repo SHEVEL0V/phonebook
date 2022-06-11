@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ContactCard from './contactCard';
+import ContactCard from './contact-card';
 import { loadingFetch } from 'redux/contacts/contacts-selectors';
 import { data } from 'redux/contacts/contacts-selectors';
 import { getContact } from 'redux/contacts/contact-operations';
-import s from './contactsList.module.css';
+import s from './contacts.module.css';
 
 export default function ContactsList() {
   const loading = useSelector(loadingFetch);

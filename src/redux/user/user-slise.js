@@ -21,8 +21,11 @@ const user = createSlice({
     [singnupUser.pending]: state => {
       state.loading = true;
     },
-    [singnupUser.fulfilled]: state => {
+    [singnupUser.fulfilled]: (state, { payload }) => {
+      state.isLoggedIn = true;
       state.loading = false;
+      state.user = payload.user;
+      state.token = payload.token;
     },
     [singnupUser.rejected]: state => {
       state.loading = false;

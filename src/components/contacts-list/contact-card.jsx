@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contact-operations';
 import { loadingDelete } from 'redux/contacts/contacts-selectors';
-import s from './contactsList.module.css';
+import s from './contacts.module.css';
 import { useState } from 'react';
 
 export default function ContactCard({ card, index }) {

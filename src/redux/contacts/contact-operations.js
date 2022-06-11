@@ -16,7 +16,6 @@ const getContact = createAsyncThunk('getContact', async () => {
 const addContact = createAsyncThunk('addContact', async contact => {
   try {
     await axios.post('/contacts', contact);
-    await axios.get('/contacts');
     const { data } = await axios.get('/contacts');
     return data;
   } catch {
