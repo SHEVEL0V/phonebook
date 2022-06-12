@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -20,11 +21,10 @@ const singnupUser = createAsyncThunk(
         '/users/signup',
         credentitals,
       );
-      console.log(data);
       token.set(data.token);
       return data;
     } catch {
-      console.log('signup error!!!!');
+      Notify.failure('login not created');
     }
   },
 );
@@ -37,7 +37,7 @@ const loginUser = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch {
-      console.log('login error!!!!');
+      Notify.failure('login not avalide!');
     }
   },
 );
@@ -71,7 +71,7 @@ const fetchCurentUser = createAsyncThunk(
     try {
       await axios.get('/users/current');
     } catch {
-      console.log('fetchCurentUser error!!!!');
+      console.log('authentication error!!!!');
     }
   },
 );

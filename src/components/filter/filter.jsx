@@ -9,7 +9,7 @@ export default function Filter() {
 
   const setValue = e => {
     const value = e.target.value;
-    dispatch(addValueFilter(value.trim()));
+    dispatch(addValueFilter(value));
   };
   return (
     <div className={s.thamb}>
