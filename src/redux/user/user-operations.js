@@ -63,7 +63,7 @@ const fetchCurentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const tokenCurentUser = state.auth.token;
 
-    if (token === null) {
+    if (tokenCurentUser === null) {
       return;
     }
 

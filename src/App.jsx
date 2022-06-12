@@ -15,10 +15,8 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status) {
-      dispatch(fetchCurentUser());
-    }
-  }, [dispatch, status]);
+    dispatch(fetchCurentUser());
+  }, [dispatch]);
 
   return (
     <Container>

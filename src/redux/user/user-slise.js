@@ -10,6 +10,7 @@ const initialUserState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  authentication: false,
   loading: false,
   error: false,
 };
@@ -23,6 +24,7 @@ const user = createSlice({
     },
     [singnupUser.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;
+      state.authentication = true;
       state.loading = false;
       state.user = payload.user;
       state.token = payload.token;
@@ -36,6 +38,7 @@ const user = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;
+      state.authentication = true;
       state.loading = false;
       state.user = payload.user;
       state.token = payload.token;
@@ -44,6 +47,9 @@ const user = createSlice({
       state.loading = false;
       state.error = true;
     },
+    [logoutUser.pending]: state => {
+      state.isLoggedIn = false;
+    },
     [logoutUser.fulfilled]: () => initialUserState,
     [logoutUser.rejected]: state => {
       state.isLoggedIn = false;
@@ -51,9 +57,11 @@ const user = createSlice({
     },
     [fetchCurentUser.pending]: state => {
       state.loading = true;
+      state.authentication = false;
     },
     [fetchCurentUser.fulfilled]: state => {
       state.loading = false;
+      state.authentication = true;
     },
     [fetchCurentUser.rejected]: state => {
       state.loading = false;

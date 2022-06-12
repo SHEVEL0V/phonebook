@@ -1,22 +1,25 @@
 import { useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector, useDispatch } from 'react-redux';
-
 import ContactCard from './contact-card';
 import { loadingFetch } from 'redux/contacts/contacts-selectors';
 import { data } from 'redux/contacts/contacts-selectors';
 import { getContact } from 'redux/contacts/contact-operations';
 import s from './contacts.module.css';
+import { authentication } from 'redux/user/user-selectors';
 
 export default function ContactsList() {
   const loading = useSelector(loadingFetch);
   const contacts = useSelector(data);
+  const status = useSelector(authentication);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContact());
-  }, [dispatch]);
+    if (status) {
+      dispatch(getContact());
+    }
+  }, [dispatch, status]);
 
   const filter = useSelector(state => state.filterValue);
 
