@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { loading, error } from 'redux/user/user-selectors';
-
+import { loading } from 'redux/user/user-selectors';
 import { loginUser } from 'redux/user/user-operations';
 import s from './login-form.module.css';
 
@@ -26,10 +24,6 @@ export default function LoginForm() {
       getPassword('');
     }
   };
-
-  if (useSelector(error)) {
-    Notify.warning('error created');
-  }
 
   return (
     <form className={s.form} onSubmit={onSubmit}>

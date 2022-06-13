@@ -21,6 +21,7 @@ const user = createSlice({
   extraReducers: {
     [singnupUser.pending]: state => {
       state.loading = true;
+      state.error = false;
     },
     [singnupUser.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;
@@ -35,6 +36,7 @@ const user = createSlice({
     },
     [loginUser.pending]: state => {
       state.loading = true;
+      state.error = false;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;

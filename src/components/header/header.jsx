@@ -1,16 +1,23 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import Avatar from 'components/avatar/avatar';
 import LoginForm from 'components/login-form/login-form';
-import { isLoggedIn } from 'redux/user/user-selectors';
+import { isLoggedIn, error } from 'redux/user/user-selectors';
 import s from './header.module.css';
 
 export default function Header() {
-  const status = useSelector(isLoggedIn);
+  const statusLogged = useSelector(isLoggedIn);
+  const statusError = useSelector(error);
+
+  if (statusError) {
+    Notify.failure('login not avalide!');
+  }
 
   return (
     <div className={s.container}>
-      {status ? (
+      {statusLogged ? (
         <NavLink
           to="/contacts"
           className={s.nav}
@@ -31,7 +38,7 @@ export default function Header() {
           Home
         </NavLink>
       )}
-      {status ? <Avatar /> : <LoginForm />}
+      {statusLogged ? <Avatar /> : <LoginForm />}
     </div>
   );
 }
