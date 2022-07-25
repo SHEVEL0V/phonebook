@@ -4,7 +4,7 @@ import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading } from 'redux/user/user-selectors';
 import { singnupUser } from 'redux/user/user-operations';
-import s from './signup-form.module.css';
+import s from './style.module.css';
 
 export default function SignupForm({ onClose }) {
   const [name, getName] = useState('');

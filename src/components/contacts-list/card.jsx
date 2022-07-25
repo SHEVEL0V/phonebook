@@ -4,13 +4,15 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contact-operations';
 import { loadingDelete } from 'redux/contacts/contacts-selectors';
-import s from './contacts.module.css';
+import s from './style.module.css';
 import { useState } from 'react';
 
 export default function ContactCard({ card, index }) {
   const [currentBtnId, setCurrentBtnId] = useState(null);
   const dispatch = useDispatch();
   const loading = useSelector(loadingDelete);
+
+  // console.log('card!!', index);
 
   const { name, number, id } = card;
   const numberEl = index + 1;

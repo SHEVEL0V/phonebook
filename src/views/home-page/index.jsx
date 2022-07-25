@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { isLoggedIn, userName } from 'redux/user/user-selectors';
 import { useState } from 'react';
-import Modal from 'components/modal/modal';
-import SignupForm from 'components/singnup-form/signup-form';
-import s from './home-page.module.css';
+import Modal from 'components/modal';
+import SignupForm from 'components/singnup-form';
+import s from './style.module.css';
 
 export default function HomePge() {
   const [modal, setModal] = useState(false);

@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-import Avatar from 'components/avatar/avatar';
-import LoginForm from 'components/login-form/login-form';
+import Avatar from 'components/avatar';
+import LoginForm from 'components/login-form';
 import { isLoggedIn, error } from 'redux/user/user-selectors';
-import s from './header.module.css';
+import s from './style.module.css';
 
 export default function Header() {
   const statusLogged = useSelector(isLoggedIn);
@@ -18,23 +17,11 @@ export default function Header() {
   return (
     <div className={s.container}>
       {statusLogged ? (
-        <NavLink
-          to="/contacts"
-          className={s.nav}
-          style={({ isActive }) =>
-            isActive ? { color: 'red' } : undefined
-          }
-        >
+        <NavLink to="/contacts" className={s.nav}>
           Contacts
         </NavLink>
       ) : (
-        <NavLink
-          to="/"
-          className={s.nav}
-          style={({ isActive }) =>
-            isActive ? { color: 'red' } : undefined
-          }
-        >
+        <NavLink to="/" className={s.nav}>
           Home
         </NavLink>
       )}

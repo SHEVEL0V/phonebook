@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading } from 'redux/user/user-selectors';
 import { loginUser } from 'redux/user/user-operations';
-import s from './login-form.module.css';
+import s from './style.module.css';
 
 export default function LoginForm() {
   const [email, getEmail] = useState('');

@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 60px;
+
+  background-color: rgba(108, 99, 200, 0.569);
+  border-radius: 10px;
+}
+
+.nav {
+  margin-right: 20px;
+  font-family: Libre Baskerville;
+  font-size: 32px;
+  font-weight: 700;
+  text-decoration: none;
+  color: rgb(27, 24, 190);
+  text-shadow: 2px 2px 0px #989566ae, 3px 3px 0px rgba(0, 0, 0, 0.15);
+}

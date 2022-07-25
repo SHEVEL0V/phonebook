@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch } from 'react-redux';
-
+import { useRef } from 'react';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 import { addContact } from 'redux/contacts/contact-operations';
 import { useSelector } from 'react-redux';
 import { loadingAdd, data } from 'redux/contacts/contacts-selectors';
-import s from './contact-form.module.css';
+import s from './style.module.css';
+import { useEffect } from 'react';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -14,6 +15,11 @@ export default function Form() {
   const dispatch = useDispatch();
   const loading = useSelector(loadingAdd);
   const contacts = useSelector(data);
+  const selectRef = useRef();
+
+  useEffect(() => {
+    selectRef.current.focus();
+  }, []);
 
   const onSubmit = () => {
     removeState();
@@ -46,6 +52,7 @@ export default function Form() {
           className={s.input}
           type="text"
           name="name"
+          ref={selectRef}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
