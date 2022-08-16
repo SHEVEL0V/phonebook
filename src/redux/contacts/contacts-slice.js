@@ -24,6 +24,9 @@ const contacts = createSlice({
       state.data = payload;
       state.loadingFetch = false;
     },
+    [getContact.rejected]: state => {
+      state.loadingAdd = false;
+    },
 
     [addContact.pending]: (state, { payload }) => {
       state.loadingAdd = true;
@@ -32,12 +35,18 @@ const contacts = createSlice({
       state.data = payload;
       state.loadingAdd = false;
     },
+    [addContact.rejected]: state => {
+      state.loadingAdd = false;
+    },
     [deleteContact.pending]: (state, { payload }) => {
       state.loadingDelete = true;
     },
     [deleteContact.fulfilled]: (state, { payload }) => {
       state.data = payload;
       state.loadingDelete = false;
+    },
+    [deleteContact.rejected]: state => {
+      state.loadingAdd = false;
     },
   },
 });

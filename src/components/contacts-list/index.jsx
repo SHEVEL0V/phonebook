@@ -10,7 +10,7 @@ import { authentication } from 'redux/user/user-selectors';
 
 export default function ContactsList() {
   const loading = useSelector(loadingFetch);
-  const contacts = useSelector(data);
+  const { contacts } = useSelector(data);
   const status = useSelector(authentication);
 
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ export default function ContactsList() {
         <h2>Contacts:</h2>
         <ul>
           {filterList.map((el, inx) => (
-            <ContactCard key={el.id} card={el} index={inx} />
+            <ContactCard key={el._id} card={el} index={inx} />
           ))}
         </ul>
       </div>

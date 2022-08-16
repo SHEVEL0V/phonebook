@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const USERS_URL = 'https://notebook-serv.herokuapp.com/api/users';
+const USERS_URL = 'http://localhost:3030/api';
 
 axios.defaults.baseURL = USERS_URL;
 
@@ -17,32 +18,37 @@ const token = {
 const singnupUser = createAsyncThunk(
   'ruser/register',
   async credentitals => {
-    const { data } = await axios.post('/register', credentitals);
-    token.set(data.token);
-    return data;
+    try {
+      const { data } = await axios.post(
+        '/users/register',
+        credentitals,
+      );
+      token.set(data.token);
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message);
+      throw new Error('Error singnup user');
+    }
   },
 );
 
 const loginUser = createAsyncThunk(
   'loginUser',
   async credentitals => {
-    const { data } = await axios.post('/login', credentitals);
-    token.set(data.token);
-    return data;
-  },
-);
-
-const logoutUser = createAsyncThunk(
-  'logoutUser',
-  async credentitals => {
     try {
-      const { data } = await axios.post('/logout', credentitals);
-      token.unset(data.token);
-    } catch {
-      throw new Error('logout error!');
+      const { data } = await axios.post('/users/login', credentitals);
+      token.set(data.token);
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message);
+      throw new Error('Error login user');
     }
   },
 );
+
+const logoutUser = createAsyncThunk('logoutUser', credentitals => {
+  token.unset('none');
+});
 
 const fetchCurentUser = createAsyncThunk(
   'fetchCurentUser',
@@ -56,8 +62,9 @@ const fetchCurentUser = createAsyncThunk(
 
     token.set(tokenCurentUser);
     try {
-      await axios.get('/users/current');
-    } catch {
+      await axios.get('/contacts');
+    } catch ({ message }) {
+      Notify.failure(message);
       throw new Error('authentication error!');
     }
   },

@@ -8,7 +8,7 @@ import userReduser from './user/user-slise';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isLoggedIn', 'user', 'contacts'],
+  whitelist: ['token', 'isLoggedIn', 'user', 'contacts', 'avatarURL'],
 };
 
 export const store = configureStore({

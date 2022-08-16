@@ -8,4 +8,13 @@ const error = state => state.auth.error;
 
 const userName = state => state.auth.user.name;
 
-export { isLoggedIn, userName, loading, error, authentication };
+const avatarURL = state => state.auth.user.avatarURL;
+
+export {
+  isLoggedIn,
+  userName,
+  loading,
+  error,
+  authentication,
+  avatarURL,
+};

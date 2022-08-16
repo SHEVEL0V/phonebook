@@ -11,10 +11,11 @@ import { useEffect } from 'react';
 
 export default function Form() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const dispatch = useDispatch();
   const loading = useSelector(loadingAdd);
-  const contacts = useSelector(data);
+  const { contacts } = useSelector(data);
   const selectRef = useRef();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Form() {
     if (
       contacts.every(e => e.name.toLowerCase() !== name.toLowerCase())
     ) {
-      dispatch(addContact({ name, number }));
+      dispatch(addContact({ name, phone, email }));
     } else {
       alert(`"${name}" is already in contact!`);
     }
@@ -35,7 +36,8 @@ export default function Form() {
 
   const removeState = () => {
     setName('');
-    setNumber('');
+    setPhone('');
+    setEmail('');
   };
 
   return (
@@ -53,7 +55,6 @@ export default function Form() {
           type="text"
           name="name"
           ref={selectRef}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={e => setName(e.target.value)}
@@ -61,16 +62,26 @@ export default function Form() {
         />
       </label>
       <label>
-        <p className={s.text}>Number</p>
+        <p className={s.text}>Phone</p>
         <input
           className={s.input}
           type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          name="phone"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={e => setNumber(e.target.value)}
-          value={number}
+          onChange={e => setPhone(e.target.value)}
+          value={phone}
+        />
+      </label>
+      <label>
+        <p className={s.text}>Email</p>
+        <input
+          className={s.input}
+          type="email"
+          name="email"
+          required
+          onChange={e => setEmail(e.target.value)}
+          value={email}
         />
       </label>
       <button className={s.button} type="sabmit">

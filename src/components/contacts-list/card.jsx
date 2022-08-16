@@ -12,21 +12,29 @@ export default function ContactCard({ card, index }) {
   const dispatch = useDispatch();
   const loading = useSelector(loadingDelete);
 
-  // console.log('card!!', index);
-
-  const { name, number, id } = card;
+  const { name, phone, _id: id, email, favorite } = card;
   const numberEl = index + 1;
 
   return (
     <li className={s.item}>
-      <span className={s.number}>{numberEl}</span>
-      <span>
-        <b className={s.text}>name:</b> {name}
-      </span>
-      <span>
-        <b className={s.text}>tel:</b>
-        {number}
-      </span>
+      <div className={s.number}>{numberEl}</div>
+      <div className={s.container_name}>
+        <span className={s.name_el}>
+          <b className={s.text}>name:</b> {name}
+        </span>
+        <span className={s.name_el}>
+          <b className={s.text}>tel:</b>
+          {phone}
+        </span>
+        <span className={s.name_el}>
+          <b className={s.text}>email:</b>
+          {email}
+        </span>
+        <span className={s.name_el}>
+          <b className={s.text}>status:</b>
+          {favorite ? <b> favorite</b> : '---'}
+        </span>
+      </div>
       <button
         className={s.button}
         id={id}

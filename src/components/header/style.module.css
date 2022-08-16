@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -15,6 +16,6 @@
   font-size: 32px;
   font-weight: 700;
   text-decoration: none;
-  color: rgb(27, 24, 190);
+  color: black;
   text-shadow: 2px 2px 0px #989566ae, 3px 3px 0px rgba(0, 0, 0, 0.15);
 }
