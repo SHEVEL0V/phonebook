@@ -20,17 +20,18 @@ const user = createSlice({
   initialState: initialUserState,
   extraReducers: {
     [singnupUser.pending]: state => {
+      state.authentication = false;
       state.loading = true;
       state.error = false;
     },
     [singnupUser.fulfilled]: (state, { payload }) => {
-      state.isLoggedIn = true;
-      state.authentication = true;
       state.loading = false;
+      state.authentication = true;
       state.user = payload.user;
       state.token = payload.token;
     },
     [singnupUser.rejected]: state => {
+      state.authentication = false;
       state.loading = false;
       state.error = true;
     },
@@ -59,14 +60,17 @@ const user = createSlice({
     },
     [fetchCurentUser.pending]: state => {
       state.loading = true;
+      state.isLoggedIn = false;
       state.authentication = false;
     },
     [fetchCurentUser.fulfilled]: state => {
       state.loading = false;
+      state.isLoggedIn = true;
       state.authentication = true;
     },
     [fetchCurentUser.rejected]: state => {
       state.loading = false;
+      state.isLoggedIn = false;
       state.error = true;
     },
   },

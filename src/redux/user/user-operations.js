@@ -16,16 +16,17 @@ const token = {
 };
 
 const singnupUser = createAsyncThunk(
-  'ruser/register',
+  'user/register',
   async credentitals => {
     try {
       const { data } = await axios.post(
         '/users/register',
         credentitals,
       );
-      token.set(data.token);
-      return data;
-    } catch ({ message }) {
+      Notify.success(data.message);
+      return {};
+    } catch (err) {
+      const { message } = err.response.data;
       Notify.failure(message);
       throw new Error('Error singnup user');
     }
@@ -39,7 +40,8 @@ const loginUser = createAsyncThunk(
       const { data } = await axios.post('/users/login', credentitals);
       token.set(data.token);
       return data;
-    } catch ({ message }) {
+    } catch (err) {
+      const { message } = err.response.data;
       Notify.failure(message);
       throw new Error('Error login user');
     }
@@ -56,14 +58,16 @@ const fetchCurentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const tokenCurentUser = state.auth.token;
 
-    if (tokenCurentUser === null) {
-      return;
+    if (!tokenCurentUser) {
+      throw new Error('authentication error!');
     }
 
     token.set(tokenCurentUser);
+
     try {
       await axios.get('/contacts');
-    } catch ({ message }) {
+    } catch (err) {
+      const { message } = err.response.data;
       Notify.failure(message);
       throw new Error('authentication error!');
     }
