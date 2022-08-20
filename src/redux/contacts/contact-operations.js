@@ -2,11 +2,19 @@ import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3030/api';
+const limit = 6;
+const page = 1;
+const favorite = null;
 
 const getContact = createAsyncThunk('getContact', async () => {
   try {
-    const { data } = await axios.get('/contacts');
+    const { data } = await axios.get('/contacts', {
+      params: {
+        limit,
+        page,
+        favorite,
+      },
+    });
 
     return data;
   } catch (err) {

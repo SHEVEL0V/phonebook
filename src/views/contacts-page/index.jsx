@@ -1,6 +1,7 @@
 import Filter from 'components/filter';
 import Form from 'components/contact-form';
 import ContactsList from 'components/contacts-list';
+import Pagination from 'components/pagination';
 import s from './style.module.css';
 
 export default function ContactsPage() {
@@ -11,6 +12,7 @@ export default function ContactsPage() {
         <Filter />
       </div>
       <ContactsList />
+      <Pagination />
     </div>
   );
 }

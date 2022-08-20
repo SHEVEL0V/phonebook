@@ -1,4 +1,6 @@
-.container{
-    margin: 20px;
-    display: flex;
+.container {
+  position: relative;
+  padding-bottom: 50px;
+  margin: 20px;
+  display: flex;
 }
