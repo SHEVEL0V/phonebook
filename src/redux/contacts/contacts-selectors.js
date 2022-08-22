@@ -6,4 +6,6 @@ const loadingDelete = state => state.contacts.loadingDelete;
 
 const data = state => state.contacts.data;
 
-export { data, loadingFetch, loadingAdd, loadingDelete };
+const totalSel = state => state.contacts.data.total;
+
+export { data, loadingFetch, loadingAdd, loadingDelete, totalSel };

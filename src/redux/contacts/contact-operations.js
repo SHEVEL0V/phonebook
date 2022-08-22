@@ -2,11 +2,8 @@ import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const limit = 6;
-const page = 1;
-const favorite = null;
-
-const getContact = createAsyncThunk('getContact', async () => {
+const getContact = createAsyncThunk('getContact', async req => {
+  const { limit, page, favorite } = req;
   try {
     const { data } = await axios.get('/contacts', {
       params: {

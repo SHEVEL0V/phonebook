@@ -18,19 +18,19 @@ export default function ContactCard({ card, index }) {
   return (
     <li className={s.item}>
       <div className={s.number}>{numberEl}</div>
-      <div className={s.container_name}>
-        <span className={s.name_el}>
+      <div className={s.container_tb}>
+        <span className={s.tr}>
           <b className={s.text}>name:</b> {name}
         </span>
-        <span className={s.name_el}>
+        <span className={s.tr}>
           <b className={s.text}>tel:</b>
           {phone}
         </span>
-        <span className={s.name_el}>
+        <span className={s.tr}>
           <b className={s.text}>email:</b>
           {email}
         </span>
-        <span className={s.name_el}>
+        <span className={s.tr}>
           <b className={s.text}>status:</b>
           {favorite ? <b> favorite</b> : '---'}
         </span>

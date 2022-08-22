@@ -1,5 +1,4 @@
-const page = state => state.page;
-const limit = state => state.limit;
-const favorite = state => state.favorite;
+const pageSel = state => state.pagination.page;
+const limitSel = state => state.pagination.limit;
 
-export { page, limit, favorite };
+export { pageSel, limitSel };

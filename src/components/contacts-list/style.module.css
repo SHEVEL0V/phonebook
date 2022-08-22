@@ -16,12 +16,20 @@
   background-color: rgb(239, 239, 239);
   border-radius: 20px;
 }
-.container_name {
+.container_tb {
   display: flex;
   flex-wrap: wrap;
 }
 
-.name_el {
+.tr {
+  background-color: rgba(44, 120, 220, 0.144);
+  margin: 2px;
+  padding: 5px;
+
+  width: 100%;
+
+  border-style: solid;
+  border-radius: 3px;
   margin-right: 20px;
 }
 
