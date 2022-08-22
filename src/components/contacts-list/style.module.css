@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  padding-left: 20px;
 }
 .item {
   display: flex;
@@ -33,7 +32,7 @@
   margin-right: 20px;
 }
 
-.number {
+.favorite {
   min-width: 35px;
   min-height: 35px;
   display: flex;
@@ -43,10 +42,17 @@
   margin-right: 10px;
   font-weight: 600;
 
+  border: 0;
+  cursor: pointer;
+
   border-radius: 50%;
   background-color: rgba(165, 165, 204, 0.907);
   box-shadow: 0px 0px 16px 8px #56555566;
 }
+.favorite:active {
+  background-color: rgb(19, 173, 80);
+}
+
 .text {
   display: inline-block;
   width: 55px;
@@ -67,6 +73,7 @@
   border: 0;
   background-color: rgba(165, 165, 204, 0.907);
   box-shadow: 0px 0px 16px 8px #56555566;
+  cursor: pointer;
 }
 .button:active {
   background-color: rgb(165, 165, 248);

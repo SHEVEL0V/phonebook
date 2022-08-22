@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { favoriteFilter } from 'redux/filter/selectors';
 import { updateFavorite } from 'redux/filter/slise';
 import { limitSel } from 'redux/pagination/selectors';
-import { updateLimit } from 'redux/pagination/slice';
+import { updateLimit, updatePage } from 'redux/pagination/slice';
 
 import s from './style.module.css';
 
@@ -27,15 +27,6 @@ export default function Filter() {
   return (
     <div className={s.thamb}>
       <h3 className={s.text}>Filter contacts:</h3>
-      <label className={s.itemFilter}>
-        Option favorite -
-        <input
-          className={s.checkbox}
-          type="checkbox"
-          value={favorite}
-          onClick={() => dispatch(updateFavorite(!favorite))}
-        ></input>
-      </label>
       <div className={s.itemFilter}>
         <b>Limit</b>
         <Select
@@ -44,9 +35,22 @@ export default function Filter() {
           value={defaultValueFavorite()}
           onChange={({ value }) => {
             dispatch(updateLimit(value));
+            dispatch(updatePage(1));
           }}
         />
       </div>
+      <label className={s.itemFilter}>
+        Option favorite -
+        <input
+          className={s.checkbox}
+          type="checkbox"
+          value={favorite}
+          onClick={() => {
+            dispatch(updateFavorite(!favorite));
+            dispatch(updatePage(1));
+          }}
+        ></input>
+      </label>
     </div>
   );
 }

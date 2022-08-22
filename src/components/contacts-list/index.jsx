@@ -8,6 +8,7 @@ import { authentication } from 'redux/user/user-selectors';
 import { limitSel, pageSel } from 'redux/pagination/selectors';
 import { favoriteFilter } from 'redux/filter/selectors';
 import ContactCard from './card';
+import Pagination from 'components/pagination';
 import s from './style.module.css';
 
 export default function ContactsList() {
@@ -35,7 +36,6 @@ export default function ContactsList() {
 
   return (
     <div className={s.container}>
-      <h2>Contacts:</h2>
       <ul>
         {contacts
           ? contacts.map((el, inx) => (
@@ -43,6 +43,7 @@ export default function ContactsList() {
             ))
           : []}
       </ul>
+      <Pagination />
     </div>
   );
 }

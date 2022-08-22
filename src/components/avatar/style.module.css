@@ -1,42 +1,49 @@
 .avatar_container {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  z-index: 10;
-  min-width: 100px;
-  margin-left: 10px;
-  display: block;
+  margin-left: auto;
+
+  display: flex;
   padding: 5px;
-  border: solid 2px;
-  border-color: rgba(0, 0, 0, 0.484);
-  border-radius: 10%;
   text-align: center;
-  background-color: rgba(255, 228, 196, 0.75);
+}
+
+.button_container {
+  margin-right: 10px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 700;
 }
 .avatar {
-  border-radius: 10%;
+  display: block;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
   overflow: hidden;
+  border: solid coral;
 }
 .img {
+  width: 100%;
   display: block;
   height: auto;
-  width: 100%;
 }
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 40px;
   height: 20px;
+  margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
 
   border-radius: 10px;
-  background-color: rgba(210, 215, 144, 0.227);
+  background-color: rgba(255, 127, 80, 0.679);
   box-shadow: 1px 2px 27px 1px rgba(0, 0, 0, 0.67);
   border: 0;
   font-size: 14px;
   transition: all 250 cubic-bezier(0.79, 0.33, 0.14, 0.53);
+  cursor: pointer;
 }
 .button:active {
   background-color: beige;

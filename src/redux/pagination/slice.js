@@ -17,14 +17,16 @@ const pagination = createSlice({
     decrementPage: state => {
       if (state.page > 1) state.page -= 1;
     },
-
     updateLimit: (state, { payload }) => {
       state.limit = payload;
+    },
+
+    updatePage: (state, { payload }) => {
+      state.page = payload;
     },
   },
 });
 
-export const { incrementPage, decrementPage, updateLimit } =
-  pagination.actions;
+export const { incrementPage, decrementPage, updateLimit, updatePage } = pagination.actions;
 
 export default pagination.reducer;

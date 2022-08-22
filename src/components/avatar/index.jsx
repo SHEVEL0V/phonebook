@@ -16,13 +16,15 @@ export default function Avatar() {
   };
   return (
     <div className={s.avatar_container}>
-      <div className={s.avatar}>
-        <img src={avatar} alt="avatar" />
+      <div className={s.button_container}>
+        <samp className={s.name}>{name ? name : 'name'}</samp>
+        <button className={s.button} onClick={logOut}>
+          <b>Out</b>
+        </button>
       </div>
-      <samp>{name ? name : 'name'}</samp>
-      <button className={s.button} onClick={logOut}>
-        <b>Out</b>
-      </button>
+      <div className={s.avatar}>
+        <img className={s.img} src={avatar} alt="avatar" />
+      </div>
     </div>
   );
 }

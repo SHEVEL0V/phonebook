@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getContact,
-  addContact,
-  deleteContact,
-} from './contact-operations';
+import { getContact, addContact, deleteContact, addStatusFavorite } from './contact-operations';
 
 const contactsInitialState = {
   data: [],
@@ -28,7 +24,7 @@ const contacts = createSlice({
       state.loadingAdd = false;
     },
 
-    [addContact.pending]: (state, { payload }) => {
+    [addContact.pending]: state => {
       state.loadingAdd = true;
     },
     [addContact.fulfilled]: (state, { payload }) => {
@@ -46,6 +42,18 @@ const contacts = createSlice({
       state.loadingDelete = false;
     },
     [deleteContact.rejected]: state => {
+      state.loadingAdd = false;
+    },
+
+    [addStatusFavorite.pending]: state => {
+      state.loadingAdd = true;
+    },
+    [addStatusFavorite.fulfilled]: (state, { payload }) => {
+      state.data = payload;
+      state.loadingAdd = false;
+    },
+
+    [addContact.rejected]: state => {
       state.loadingAdd = false;
     },
   },

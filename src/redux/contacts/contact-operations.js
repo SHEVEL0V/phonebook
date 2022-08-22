@@ -33,19 +33,29 @@ const addContact = createAsyncThunk('addContact', async contact => {
   }
 });
 
-const deleteContact = createAsyncThunk(
-  'deleteContact',
-  async contact => {
-    try {
-      await axios.delete(`/contacts/${contact}`);
-      const { data } = await axios.get('/contacts');
-      return data;
-    } catch (err) {
-      const { message } = err.response.data;
-      Notify.failure(message);
-      throw new Error('delete  contacts error!');
-    }
-  },
-);
+const deleteContact = createAsyncThunk('deleteContact', async contact => {
+  try {
+    await axios.delete(`/contacts/${contact}`);
+    const { data } = await axios.get('/contacts');
+    return data;
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('delete  contacts error!');
+  }
+});
 
-export { getContact, addContact, deleteContact };
+const addStatusFavorite = createAsyncThunk('addContact', async (id, status) => {
+  console.log(id);
+  try {
+    await axios.put(`/contacts/${id}/favorite`, { favorite: status });
+    const { data } = await axios.get('/contacts');
+    return data;
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('add status favotite error!');
+  }
+});
+
+export { getContact, addContact, deleteContact, addStatusFavorite };

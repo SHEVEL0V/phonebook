@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { AiFillDelete } from 'react-icons/ai';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contacts/contact-operations';
+import { deleteContact, addStatusFavorite } from 'redux/contacts/contact-operations';
 import { loadingDelete } from 'redux/contacts/contacts-selectors';
 import s from './style.module.css';
 import { useState } from 'react';
@@ -17,7 +17,15 @@ export default function ContactCard({ card, index }) {
 
   return (
     <li className={s.item}>
-      <div className={s.number}>{numberEl}</div>
+      <button
+        className={s.favorite}
+        style={favorite ? { backgroundColor: ' rgb(19, 173, 80)' } : {}}
+        onClick={() => {
+          dispatch(addStatusFavorite(id, !favorite));
+        }}
+      >
+        {numberEl}
+      </button>
       <div className={s.container_tb}>
         <span className={s.tr}>
           <b className={s.text}>name:</b> {name}
@@ -44,11 +52,7 @@ export default function ContactCard({ card, index }) {
           dispatch(deleteContact(id));
         }}
       >
-        {loading && currentBtnId === id ? (
-          <ClipLoader size={10} />
-        ) : (
-          <AiFillDelete />
-        )}
+        {loading && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillDelete />}
       </button>
     </li>
   );
