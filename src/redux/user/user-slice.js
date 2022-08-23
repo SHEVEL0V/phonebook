@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  singnupUser,
-  loginUser,
-  logoutUser,
-  fetchCurentUser,
-} from './user-operations';
+import { singnupUser, loginUser, logoutUser, fetchCurentUser } from './user-operations';
 
 const initialUserState = {
   user: { name: null, email: null },
@@ -72,6 +67,7 @@ const user = createSlice({
       state.loading = false;
       state.isLoggedIn = false;
       state.error = true;
+      state.authentication = false;
     },
   },
 });

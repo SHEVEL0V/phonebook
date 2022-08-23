@@ -3,10 +3,11 @@ import { getContact, addContact, deleteContact, addStatusFavorite } from './cont
 
 const contactsInitialState = {
   data: [],
-  loadingFetch: false,
+  loadingGet: false,
   loadingAdd: false,
   loadingDelete: false,
-  error: false,
+  loadingStatus: false,
+  response: {},
 };
 
 const contacts = createSlice({
@@ -14,51 +15,49 @@ const contacts = createSlice({
   initialState: contactsInitialState,
   extraReducers: {
     [getContact.pending]: state => {
-      state.loadingFetch = true;
+      state.loadingGet = true;
     },
     [getContact.fulfilled]: (state, { payload }) => {
       state.data = payload;
-      state.loadingFetch = false;
+      state.loadingGet = false;
     },
     [getContact.rejected]: state => {
-      state.loadingAdd = false;
+      state.loadingGet = false;
     },
 
     [addContact.pending]: state => {
       state.loadingAdd = true;
     },
     [addContact.fulfilled]: (state, { payload }) => {
-      state.data = payload;
       state.loadingAdd = false;
+      state.response = payload;
     },
     [addContact.rejected]: state => {
       state.loadingAdd = false;
     },
-    [deleteContact.pending]: (state, { payload }) => {
+    [deleteContact.pending]: state => {
       state.loadingDelete = true;
     },
     [deleteContact.fulfilled]: (state, { payload }) => {
-      state.data = payload;
       state.loadingDelete = false;
+      state.response = payload;
     },
     [deleteContact.rejected]: state => {
-      state.loadingAdd = false;
+      state.loadingDelete = false;
     },
 
     [addStatusFavorite.pending]: state => {
-      state.loadingAdd = true;
+      state.loadingStatus = true;
     },
     [addStatusFavorite.fulfilled]: (state, { payload }) => {
-      state.data = payload;
-      state.loadingAdd = false;
+      state.loadingStatus = false;
+      state.response = payload;
     },
 
     [addContact.rejected]: state => {
-      state.loadingAdd = false;
+      state.loadingStatus = false;
     },
   },
 });
 
-const contactsReduse = contacts.reducer;
-
-export default contactsReduse;
+export default contacts.reducer;

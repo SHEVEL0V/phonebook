@@ -15,63 +15,52 @@ const token = {
   },
 };
 
-const singnupUser = createAsyncThunk(
-  'user/register',
-  async credentitals => {
-    try {
-      const { data } = await axios.post(
-        '/users/register',
-        credentitals,
-      );
-      Notify.success(data.message);
-      return {};
-    } catch (err) {
-      const { message } = err.response.data;
-      Notify.failure(message);
-      throw new Error('Error singnup user');
-    }
-  },
-);
+const singnupUser = createAsyncThunk('user/register', async credentitals => {
+  try {
+    const { data } = await axios.post('/users/register', credentitals);
+    Notify.success(data.message);
+    return {};
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('Error singnup user');
+  }
+});
 
-const loginUser = createAsyncThunk(
-  'loginUser',
-  async credentitals => {
-    try {
-      const { data } = await axios.post('/users/login', credentitals);
-      token.set(data.token);
-      return data;
-    } catch (err) {
-      const { message } = err.response.data;
-      Notify.failure(message);
-      throw new Error('Error login user');
-    }
-  },
-);
+const loginUser = createAsyncThunk('loginUser', async credentitals => {
+  try {
+    const { data } = await axios.post('/users/login', credentitals);
+    token.set(data.token);
+    return data;
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('Error login user');
+  }
+});
 
 const logoutUser = createAsyncThunk('logoutUser', credentitals => {
   token.unset('none');
 });
 
-const fetchCurentUser = createAsyncThunk(
-  'fetchCurentUser',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const tokenCurentUser = state.auth.token;
+const fetchCurentUser = createAsyncThunk('fetchCurentUser', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const tokenCurentUser = state.auth.token;
 
-    if (!tokenCurentUser) {
-      throw new Error('authentication error!');
-    }
+  if (!tokenCurentUser) {
+    throw new Error('authentication error!');
+  }
 
-    token.set(tokenCurentUser);
+  token.set(tokenCurentUser);
 
-    try {
-      await axios.get('/contacts');
-    } catch (err) {
-      const { message } = err.response.data;
-      Notify.failure(message);
-      throw new Error('authentication error!');
-    }
-  },
-);
+  try {
+    // await axios.get('/contacts');
+    console.log('authentication');
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('authentication error!');
+  }
+});
 
 export { singnupUser, loginUser, logoutUser, fetchCurentUser };

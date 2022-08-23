@@ -1,30 +1,32 @@
 import PropTypes from 'prop-types';
-import { AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiFillStar } from 'react-icons/ai';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, addStatusFavorite } from 'redux/contacts/contact-operations';
-import { loadingDelete } from 'redux/contacts/contacts-selectors';
+import { loadingDeleteSel, loadingStatusSel } from 'redux/contacts/contacts-selectors';
 import s from './style.module.css';
-import { useState } from 'react';
 
-export default function ContactCard({ card, index }) {
+const ContactCard = ({ card }) => {
+  const loadingDelete = useSelector(loadingDeleteSel);
+  const loadingStatus = useSelector(loadingStatusSel);
   const [currentBtnId, setCurrentBtnId] = useState(null);
   const dispatch = useDispatch();
-  const loading = useSelector(loadingDelete);
 
   const { name, phone, _id: id, email, favorite } = card;
-  const numberEl = index + 1;
-
+  console.log('cards');
   return (
     <li className={s.item}>
       <button
         className={s.favorite}
+        id={id}
         style={favorite ? { backgroundColor: ' rgb(19, 173, 80)' } : {}}
-        onClick={() => {
-          dispatch(addStatusFavorite(id, !favorite));
+        onClick={e => {
+          setCurrentBtnId(e.currentTarget.id);
+          dispatch(addStatusFavorite({ id, favorite: !favorite }));
         }}
       >
-        {numberEl}
+        {loadingStatus && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillStar />}
       </button>
       <div className={s.container_tb}>
         <span className={s.tr}>
@@ -52,16 +54,17 @@ export default function ContactCard({ card, index }) {
           dispatch(deleteContact(id));
         }}
       >
-        {loading && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillDelete />}
+        {loadingDelete && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillDelete />}
       </button>
     </li>
   );
-}
+};
+
+export default memo(ContactCard);
 
 ContactCard.propTypes = {
-  index: PropTypes.number.isRequired,
-  contacts: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+  card: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }),

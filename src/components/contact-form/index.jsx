@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
 import { addContact } from 'redux/contacts/contact-operations';
 import { useSelector } from 'react-redux';
-import { loadingAdd, data } from 'redux/contacts/contacts-selectors';
+import { loadingAddSel, dataSel } from 'redux/contacts/contacts-selectors';
 import s from './style.module.css';
 import { useEffect } from 'react';
 
@@ -14,8 +14,8 @@ export default function Form() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
-  const loading = useSelector(loadingAdd);
-  const { contacts } = useSelector(data);
+  const loadingAdd = useSelector(loadingAddSel);
+  const { contacts } = useSelector(dataSel);
   const selectRef = useRef();
 
   useEffect(() => {
@@ -25,9 +25,7 @@ export default function Form() {
   const onSubmit = () => {
     removeState();
 
-    if (
-      contacts.every(e => e.name.toLowerCase() !== name.toLowerCase())
-    ) {
+    if (contacts.every(e => e.name.toLowerCase() !== name.toLowerCase())) {
       dispatch(addContact({ name, phone, email }));
     } else {
       alert(`"${name}" is already in contact!`);
@@ -48,8 +46,8 @@ export default function Form() {
         onSubmit();
       }}
     >
-      <label>
-        <p className={s.text}>Name</p>
+      <label className={s.item}>
+        <b className={s.text}>Name:</b>
         <input
           className={s.input}
           type="text"
@@ -61,8 +59,8 @@ export default function Form() {
           value={name}
         />
       </label>
-      <label>
-        <p className={s.text}>Phone</p>
+      <label className={s.item}>
+        <b className={s.text}>Phone:</b>
         <input
           className={s.input}
           type="tel"
@@ -73,8 +71,8 @@ export default function Form() {
           value={phone}
         />
       </label>
-      <label>
-        <p className={s.text}>Email</p>
+      <label className={s.item}>
+        <b className={s.text}>Email:</b>
         <input
           className={s.input}
           type="email"
@@ -86,13 +84,7 @@ export default function Form() {
       </label>
       <button className={s.button} type="sabmit">
         add contact
-        <span>
-          {loading ? (
-            <ClipLoader size={15} />
-          ) : (
-            <BsFillArrowRightSquareFill />
-          )}
-        </span>
+        <span>{loadingAdd ? <ClipLoader size={15} /> : <BsFillArrowRightSquareFill />}</span>
       </button>
     </form>
   );

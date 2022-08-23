@@ -23,8 +23,8 @@ const getContact = createAsyncThunk('getContact', async req => {
 
 const addContact = createAsyncThunk('addContact', async contact => {
   try {
-    await axios.post('/contacts', contact);
-    const { data } = await axios.get('/contacts', contact);
+    const { data } = await axios.post('/contacts', contact);
+    Notify.success('contact add');
     return data;
   } catch (err) {
     const { message } = err.response.data;
@@ -35,8 +35,8 @@ const addContact = createAsyncThunk('addContact', async contact => {
 
 const deleteContact = createAsyncThunk('deleteContact', async contact => {
   try {
-    await axios.delete(`/contacts/${contact}`);
-    const { data } = await axios.get('/contacts');
+    const { data } = await axios.delete(`/contacts/${contact}`);
+    Notify.success('contact delete');
     return data;
   } catch (err) {
     const { message } = err.response.data;
@@ -45,11 +45,10 @@ const deleteContact = createAsyncThunk('deleteContact', async contact => {
   }
 });
 
-const addStatusFavorite = createAsyncThunk('addContact', async (id, status) => {
-  console.log(id);
+const addStatusFavorite = createAsyncThunk('addStatusFavorite', async ({ id, favorite }) => {
   try {
-    await axios.put(`/contacts/${id}/favorite`, { favorite: status });
-    const { data } = await axios.get('/contacts');
+    const { data } = await axios.put(`/contacts/${id}/favorite`, { favorite });
+    Notify.success('status update');
     return data;
   } catch (err) {
     const { message } = err.response.data;

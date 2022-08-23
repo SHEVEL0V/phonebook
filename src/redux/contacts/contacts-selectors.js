@@ -1,11 +1,23 @@
-const loadingFetch = state => state.contacts.loadingFetch;
+const responseSel = state => state.contacts.response;
 
-const loadingAdd = state => state.contacts.loadingAdd;
+const loadingAddSel = state => state.contacts.loadingAdd;
 
-const loadingDelete = state => state.contacts.loadingDelete;
+const loadingDeleteSel = state => state.contacts.loadingDelete;
 
-const data = state => state.contacts.data;
+const loadingStatusSel = state => state.contacts.loadingStatus;
+
+const dataSel = state => state.contacts.data;
 
 const totalSel = state => state.contacts.data.total;
 
-export { data, loadingFetch, loadingAdd, loadingDelete, totalSel };
+const onGetContactsSel = state => state.contacts.onGetContacts;
+
+export {
+  dataSel,
+  responseSel,
+  loadingAddSel,
+  loadingDeleteSel,
+  loadingStatusSel,
+  totalSel,
+  onGetContactsSel,
+};
