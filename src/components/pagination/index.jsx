@@ -15,7 +15,7 @@ export default function Pagination() {
   if (!total) {
     return;
   }
-
+  console.log(total);
   const lastPage = Math.ceil(total / limit);
 
   const buttonOne = 1;
@@ -59,7 +59,7 @@ export default function Pagination() {
       )}
 
       {currentPage > buttonTwo && currentPage !== buttonTwo && <b>...</b>}
-      {currentPage > buttonTwo && currentPage !== lastPage && currentPage < buttonFour && (
+      {currentPage > buttonTwo && currentPage !== buttonLast && currentPage < buttonFour && (
         <button
           className={s.button}
           style={highlightСurrentPage(buttonThree)}
@@ -70,7 +70,7 @@ export default function Pagination() {
       )}
 
       {currentPage < buttonFour && currentPage !== buttonFour && <b>...</b>}
-      {currentPage >= buttonFour && (
+      {currentPage >= buttonFour && buttonFour > buttonTwo && (
         <button
           className={s.button}
           style={highlightСurrentPage(buttonFour)}
@@ -80,7 +80,7 @@ export default function Pagination() {
         </button>
       )}
 
-      {lastPage !== buttonTwo && (
+      {buttonLast !== buttonOne && buttonLast !== buttonTwo && (
         <button
           className={s.button}
           style={highlightСurrentPage(buttonLast)}
