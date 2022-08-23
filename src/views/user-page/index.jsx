@@ -13,8 +13,9 @@ export default function UserPage() {
   return (
     <div className={s.container}>
       <img className={s.img} src={avatarURL} alt="avatar" />
-      <form onClick={onSubmit}>
-        <input type="file" />
+      <form onClick={onSubmit} id="upload-container" method="POST" action="send.php">
+        <input id="file-input" type="file" name="file" multiple />
+        <label for="file-input">Выберите файл</label>
         <button className={s.button} type="submit">
           add photo
         </button>
