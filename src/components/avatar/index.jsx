@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userName, avatarURL } from 'redux/user/user-selectors';
+import { userSel, avatarURL } from 'redux/user/user-selectors';
 import { logoutUser } from 'redux/user/user-operations';
 import s from './style.module.css';
 
@@ -8,7 +8,7 @@ export default function Avatar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const name = useSelector(userName);
+  const { name } = useSelector(userSel);
   const avatar = useSelector(avatarURL);
   const logOut = () => {
     dispatch(logoutUser());

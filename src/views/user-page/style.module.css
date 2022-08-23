@@ -1,0 +1,23 @@
+.container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.img {
+  max-width: 500px;
+  margin-bottom: 20px;
+  border: solid;
+  border-radius: 10%;
+}
+.text {
+  width: 500px;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  border: solid;
+  border-radius: 3px;
+  background-color: azure;
+}
+
+.button {
+}

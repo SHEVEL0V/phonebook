@@ -8,13 +8,14 @@ import { loadingDeleteSel, loadingStatusSel } from 'redux/contacts/contacts-sele
 import s from './style.module.css';
 
 const ContactCard = ({ card }) => {
+  // const loadingGet = useSelector(loadingGetSel);
   const loadingDelete = useSelector(loadingDeleteSel);
   const loadingStatus = useSelector(loadingStatusSel);
   const [currentBtnId, setCurrentBtnId] = useState(null);
   const dispatch = useDispatch();
 
   const { name, phone, _id: id, email, favorite } = card;
-  console.log('cards');
+
   return (
     <li className={s.item}>
       <button

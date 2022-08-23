@@ -14,13 +14,22 @@
     -5px -5px 20px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
-
+.container_nav {
+  display: block;
+  padding: 5px;
+}
 .nav {
+  display: block;
+  padding: 5px;
   margin-right: 20px;
-  font-family: Libre Baskerville;
-  font-size: 32px;
+  font-family: Arial;
+  font-size: 24px;
   font-weight: 700;
   text-decoration: none;
-  color: black;
-  text-shadow: 2px 2px 0px #989566ae, 3px 3px 0px rgba(0, 0, 0, 0.15);
+
+  background-color: rgba(245, 245, 220, 0.47);
+  color: rgba(0, 0, 0, 0.763);
+
+  border-radius: 5px;
+  /* text-shadow: 2px 2px 0px #989566ae, 3px 3px 0px rgba(0, 0, 0, 0.15); */
 }

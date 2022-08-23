@@ -31,13 +31,13 @@
   align-items: center;
   justify-content: center;
 
-  width: 40px;
-  height: 20px;
+  width: 50px;
+  height: 30px;
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
 
-  border-radius: 10px;
+  border-radius: 15px;
   background-color: rgba(255, 127, 80, 0.679);
   box-shadow: 1px 2px 27px 1px rgba(0, 0, 0, 0.67);
   border: 0;

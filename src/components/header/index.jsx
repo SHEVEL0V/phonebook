@@ -11,9 +11,22 @@ export default function Header() {
   return (
     <div className={s.container}>
       {statusLogged ? (
-        <NavLink to="/contacts" className={s.nav}>
-          Contacts
-        </NavLink>
+        <>
+          <NavLink
+            to="/contacts"
+            className={s.nav}
+            style={({ isActive }) => (isActive ? { color: 'rgba(255, 0, 0, 0.854)' } : {})}
+          >
+            Contacts
+          </NavLink>
+          <NavLink
+            to="/user"
+            className={s.nav}
+            style={({ isActive }) => (isActive ? { color: 'rgba(255, 0, 0, 0.854)' } : {})}
+          >
+            User
+          </NavLink>
+        </>
       ) : (
         <NavLink to="/" className={s.nav}>
           Home

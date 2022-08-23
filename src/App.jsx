@@ -9,6 +9,7 @@ import Home from 'views/home-page';
 import ContactsPage from 'views/contacts-page';
 import { useEffect } from 'react';
 import PrivateRoute from './components/Private-route';
+import UserPage from 'views/user-page';
 
 export default function App() {
   const status = useSelector(isLoggedIn);
@@ -36,6 +37,14 @@ export default function App() {
           element={
             <PrivateRoute redirectPath="/" status={!status}>
               <ContactsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute redirectPath="/" status={!status}>
+              <UserPage />
             </PrivateRoute>
           }
         />

@@ -6,15 +6,8 @@ const loading = state => state.auth.loading;
 
 const error = state => state.auth.error;
 
-const userName = state => state.auth.user.name;
+const userSel = state => state.auth.user;
 
 const avatarURL = state => state.auth.user.avatarURL;
 
-export {
-  isLoggedIn,
-  userName,
-  loading,
-  error,
-  authentication,
-  avatarURL,
-};
+export { isLoggedIn, userSel, loading, error, authentication, avatarURL };
