@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const USERS_URL = 'https://rest-api-shevelov.herokuapp.com/api';
+const USERS_URL = 'https://api-shevelov.herokuapp.com/api';
 
 axios.defaults.baseURL = USERS_URL;
 
