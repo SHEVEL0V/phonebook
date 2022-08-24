@@ -15,7 +15,7 @@ export default function Pagination() {
   if (!total) {
     return;
   }
-  console.log(total);
+
   const lastPage = Math.ceil(total / limit);
 
   const buttonOne = 1;

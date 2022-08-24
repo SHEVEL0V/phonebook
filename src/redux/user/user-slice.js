@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { singnupUser, loginUser, logoutUser, fetchCurentUser } from './user-operations';
+import {
+  singnupUser,
+  loginUser,
+  logoutUser,
+  fetchCurentUser,
+  updateAvatar,
+} from './user-operations';
 
 const initialUserState = {
   user: { name: null, email: null },
@@ -7,7 +13,6 @@ const initialUserState = {
   isLoggedIn: false,
   authentication: false,
   loading: false,
-  error: false,
 };
 
 const user = createSlice({
@@ -17,7 +22,6 @@ const user = createSlice({
     [singnupUser.pending]: state => {
       state.authentication = false;
       state.loading = true;
-      state.error = false;
     },
     [singnupUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
@@ -28,11 +32,9 @@ const user = createSlice({
     [singnupUser.rejected]: state => {
       state.authentication = false;
       state.loading = false;
-      state.error = true;
     },
     [loginUser.pending]: state => {
       state.loading = true;
-      state.error = false;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoggedIn = true;
@@ -43,7 +45,6 @@ const user = createSlice({
     },
     [loginUser.rejected]: state => {
       state.loading = false;
-      state.error = true;
     },
     [logoutUser.pending]: state => {
       state.isLoggedIn = false;
@@ -51,7 +52,6 @@ const user = createSlice({
     [logoutUser.fulfilled]: () => initialUserState,
     [logoutUser.rejected]: state => {
       state.isLoggedIn = false;
-      state.error = true;
     },
     [fetchCurentUser.pending]: state => {
       state.loading = true;
@@ -66,8 +66,17 @@ const user = createSlice({
     [fetchCurentUser.rejected]: state => {
       state.loading = false;
       state.isLoggedIn = false;
-      state.error = true;
       state.authentication = false;
+    },
+
+    [updateAvatar.pending]: state => {
+      state.loading = true;
+    },
+    [updateAvatar.fulfilled]: state => {
+      state.loading = false;
+    },
+    [updateAvatar.rejected]: state => {
+      state.loading = false;
     },
   },
 });

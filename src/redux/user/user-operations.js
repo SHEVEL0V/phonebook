@@ -39,8 +39,23 @@ const loginUser = createAsyncThunk('loginUser', async credentitals => {
   }
 });
 
-const logoutUser = createAsyncThunk('logoutUser', credentitals => {
+const logoutUser = createAsyncThunk('logoutUser', () => {
   token.unset('none');
+});
+
+const updateAvatar = createAsyncThunk('updateAvatar', async credentitals => {
+  console.log(credentitals);
+  try {
+    const { data } = await axios.patch('/users/avatars', {
+      data: credentitals,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return data;
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('Error update avatar');
+  }
 });
 
 const fetchCurentUser = createAsyncThunk('fetchCurentUser', async (_, thunkAPI) => {
@@ -63,4 +78,4 @@ const fetchCurentUser = createAsyncThunk('fetchCurentUser', async (_, thunkAPI) 
   }
 });
 
-export { singnupUser, loginUser, logoutUser, fetchCurentUser };
+export { singnupUser, loginUser, logoutUser, fetchCurentUser, updateAvatar };

@@ -4,15 +4,22 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, addStatusFavorite } from 'redux/contacts/contact-operations';
-import { loadingDeleteSel, loadingStatusSel } from 'redux/contacts/contacts-selectors';
+import {
+  loadingDeleteSel,
+  loadingStatusSel,
+  loadingGetSel,
+} from 'redux/contacts/contacts-selectors';
 import s from './style.module.css';
 
 const ContactCard = ({ card }) => {
-  // const loadingGet = useSelector(loadingGetSel);
+  const loadingGet = useSelector(loadingGetSel);
   const loadingDelete = useSelector(loadingDeleteSel);
   const loadingStatus = useSelector(loadingStatusSel);
   const [currentBtnId, setCurrentBtnId] = useState(null);
   const dispatch = useDispatch();
+
+  const isloadingStatus = loadingGet || loadingStatus;
+  const isloadingDelete = loadingGet || loadingDelete;
 
   const { name, phone, _id: id, email, favorite } = card;
 
@@ -27,7 +34,7 @@ const ContactCard = ({ card }) => {
           dispatch(addStatusFavorite({ id, favorite: !favorite }));
         }}
       >
-        {loadingStatus && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillStar />}
+        {isloadingStatus && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillStar />}
       </button>
       <div className={s.container_tb}>
         <span className={s.tr}>
@@ -55,7 +62,7 @@ const ContactCard = ({ card }) => {
           dispatch(deleteContact(id));
         }}
       >
-        {loadingDelete && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillDelete />}
+        {isloadingDelete && currentBtnId === id ? <ClipLoader size={10} /> : <AiFillDelete />}
       </button>
     </li>
   );
