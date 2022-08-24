@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const USERS_URL = 'https://notebook-serv.herokuapp.com/api';
+const USERS_URL = 'https://rest-api-shevelov.herokuapp.com/api';
 
 axios.defaults.baseURL = USERS_URL;
 
@@ -44,12 +44,13 @@ const logoutUser = createAsyncThunk('logoutUser', () => {
 });
 
 const updateAvatar = createAsyncThunk('updateAvatar', async credentitals => {
+  console.log('add photo !!!  axios response Cors');
   try {
-    const { data } = await axios.patch('/users/avatars', {
-      data: credentitals,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    return data;
+    // const { data } = await axios.patch('/users/avatars', {
+    //   data: credentitals,
+    //   headers: { 'Content-Type': 'multipart/form-data' },
+    // });
+    // return data;
   } catch (err) {
     const { message } = err.response.data;
     Notify.failure(message);
