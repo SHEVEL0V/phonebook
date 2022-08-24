@@ -4,6 +4,7 @@ import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading } from 'redux/user/user-selectors';
 import { singnupUser } from 'redux/user/user-operations';
+import Buttton from 'components/button/button';
 import s from './style.module.css';
 
 export default function SignupForm({ onClose }) {
@@ -20,11 +21,7 @@ export default function SignupForm({ onClose }) {
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
-      <button
-        className={s.buttonClose}
-        type="button"
-        onClick={onClose}
-      >
+      <button className={s.buttonClose} type="button" onClick={onClose}>
         <IoClose />
       </button>
       <label className={s.items}>
@@ -57,14 +54,13 @@ export default function SignupForm({ onClose }) {
           value={password}
         ></input>
       </label>
-      <button
-        className={s.button}
-        disabled={name === '' || email === '' || password === ''}
+
+      <Buttton
+        text={useSelector(loading) ? <ClipLoader size={15} /> : 'signup'}
         type="submit"
+        disabled={name === '' || email === '' || password === ''}
         onClick={onSubmit}
-      >
-        signup{useSelector(loading) && <ClipLoader size={15} />}
-      </button>
+      />
     </form>
   );
 }

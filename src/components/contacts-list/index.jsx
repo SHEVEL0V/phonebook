@@ -13,6 +13,7 @@ import s from './style.module.css';
 export default function ContactsList() {
   const response = useSelector(responseSel);
   const loadingGet = useSelector(loadingGetSel);
+
   const { contacts } = useSelector(dataSel);
   const status = useSelector(authentication);
   const limit = useSelector(limitSel);

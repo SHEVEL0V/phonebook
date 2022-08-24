@@ -12,7 +12,7 @@ const dataSel = state => state.contacts.data;
 
 const totalSel = state => state.contacts.data.total;
 
-const onGetContactsSel = state => state.contacts.onGetContacts;
+const idSel = state => state.contacts.id;
 
 export {
   dataSel,
@@ -22,5 +22,5 @@ export {
   loadingDeleteSel,
   loadingStatusSel,
   totalSel,
-  onGetContactsSel,
+  idSel,
 };

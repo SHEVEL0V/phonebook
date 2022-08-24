@@ -4,6 +4,7 @@ const initialPaginationState = {
   page: 1,
   limit: 5,
   favorite: null,
+  id: null,
 };
 
 const pagination = createSlice({

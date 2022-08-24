@@ -8,11 +8,17 @@ const contactsInitialState = {
   loadingDelete: false,
   loadingStatus: false,
   response: {},
+  id: null,
 };
 
 const contacts = createSlice({
   name: 'contactsSlice',
   initialState: contactsInitialState,
+  reducers: {
+    updateId: (state, { payload }) => {
+      state.id = payload;
+    },
+  },
   extraReducers: {
     [getContact.pending]: state => {
       state.loadingGet = true;
@@ -59,5 +65,7 @@ const contacts = createSlice({
     },
   },
 });
+
+export const { updateId } = contacts.actions;
 
 export default contacts.reducer;

@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+
 import { authentication } from 'redux/user/user-selectors';
-import { useState } from 'react';
+
 import Modal from 'components/modal';
 import SignupForm from 'components/singnup-form';
+import Buttton from 'components/button/button';
+
 import s from './style.module.css';
-import { useEffect } from 'react';
 
 export default function HomePge() {
   const [modal, setModal] = useState(false);
@@ -25,9 +28,7 @@ export default function HomePge() {
             <SignupForm onClose={onModal} />
           </Modal>
         )}
-        <button className={s.button} onClick={() => setModal(true)}>
-          <b>Signup</b>
-        </button>
+        <Buttton text={'Signup'} onClick={() => setModal(true)} />
       </div>
     </div>
   );

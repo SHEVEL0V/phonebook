@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { loading } from 'redux/user/user-selectors';
 import { loginUser } from 'redux/user/user-operations';
+import Buttton from 'components/button/button';
 import s from './style.module.css';
 
 export default function LoginForm() {
@@ -29,11 +30,7 @@ export default function LoginForm() {
     <form className={s.form} onSubmit={onSubmit}>
       <label className={s.items}>
         email:
-        <input
-          name="email"
-          onChange={e => getEmail(e.target.value)}
-          value={email}
-        ></input>
+        <input name="email" onChange={e => getEmail(e.target.value)} value={email}></input>
       </label>
       <label className={s.items}>
         password:
@@ -44,13 +41,11 @@ export default function LoginForm() {
           value={password}
         ></input>
       </label>
-      <button
-        className={s.button}
+      <Buttton
+        text={useSelector(loading) ? <ClipLoader size={15} /> : 'login'}
         disabled={email === '' || password === ''}
         type="submit"
-      >
-        login {useSelector(loading) && <ClipLoader size={15} />}
-      </button>
+      />
     </form>
   );
 }

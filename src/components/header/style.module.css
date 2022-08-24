@@ -23,13 +23,18 @@
   padding: 5px;
   margin-right: 20px;
   font-family: Arial;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   text-decoration: none;
 
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   background-color: rgba(245, 245, 220, 0.47);
   color: rgba(0, 0, 0, 0.763);
 
   border-radius: 5px;
   /* text-shadow: 2px 2px 0px #989566ae, 3px 3px 0px rgba(0, 0, 0, 0.15); */
+}
+
+.nav:hover {
+  background-color: rgba(245, 245, 220, 0.87);
 }
