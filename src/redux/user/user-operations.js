@@ -44,7 +44,6 @@ const logoutUser = createAsyncThunk('logoutUser', () => {
 });
 
 const updateAvatar = createAsyncThunk('updateAvatar', async credentitals => {
-  console.log(credentitals);
   try {
     const { data } = await axios.patch('/users/avatars', {
       data: credentitals,

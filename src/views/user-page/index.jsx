@@ -8,21 +8,22 @@ export default function UserPage() {
   const [file, setFile] = useState('');
   const { avatarURL, name, email } = useSelector(userSel);
   const dispatch = useDispatch();
+
   const onSubmit = e => {
+    e.preventDefault();
     setFile(e.target.files);
   };
 
   return (
     <div className={s.container}>
       <img className={s.img} src={avatarURL} alt="avatar" />
-      <form className={s.text}>
-        <input type="file" onClick={onSubmit} />
+      <form className={s.text} onChange={onSubmit}>
+        <input type="file" name="file" />
 
         <button
           className={s.button}
-          type="submit"
-          onClick={e => {
-            e.preventDefault();
+          type="button"
+          onClick={() => {
             dispatch(updateAvatar(file));
           }}
         >
