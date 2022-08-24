@@ -15,7 +15,7 @@ const ContactCard = ({ card }) => {
   const loadingGet = useSelector(loadingGetSel);
   const loadingDelete = useSelector(loadingDeleteSel);
   const loadingStatus = useSelector(loadingStatusSel);
-  const [currentBtnId, setCurrentBtnId] = useState(null);
+  const [currentBtnId, setCurrentBtnId] = useState(false);
   const dispatch = useDispatch();
 
   const isloadingStatus = loadingGet || loadingStatus;

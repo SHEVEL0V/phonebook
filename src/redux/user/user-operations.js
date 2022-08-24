@@ -46,6 +46,7 @@ const logoutUser = createAsyncThunk('logoutUser', () => {
 const updateAvatar = createAsyncThunk('updateAvatar', async credentitals => {
   console.log('add photo !!!  axios response Cors');
   try {
+    Notify.success('add photo !!!  axios response Cors');
     // const { data } = await axios.patch('/users/avatars', {
     //   data: credentitals,
     //   headers: { 'Content-Type': 'multipart/form-data' },
