@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ClipLoader, BeatLoader } from 'react-spinners';
+import { BeatLoader } from 'react-spinners';
 import { useSelector, useDispatch } from 'react-redux';
 import { responseSel, dataSel, loadingGetSel } from 'redux/contacts/contacts-selectors';
 import { getContact } from 'redux/contacts/contact-operations';
