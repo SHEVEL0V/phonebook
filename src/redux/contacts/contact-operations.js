@@ -26,7 +26,7 @@ const addContact = createAsyncThunk('addContact', async contact => {
     const { data } = await axios.post('/contacts', contact);
     return data;
   } catch (err) {
-    const { message } = err.response.data.status[0];
+    const { message } = err.response.data;
     Notify.failure(message);
     throw new Error('add contacts error!');
   }
@@ -37,7 +37,7 @@ const updateContact = createAsyncThunk('updateContact', async ({ id, contact }) 
     const { data } = await axios.put(`/contacts/${id}`, contact);
     return data;
   } catch (err) {
-    const { message } = err.response.data.status[0];
+    const { message } = err.response.data;
     Notify.failure(message);
     throw new Error('update contacts error!');
   }
