@@ -84,10 +84,6 @@ const contacts = createSlice({
       state.loadingStatus = false;
       state.response = payload;
     },
-
-    [addContact.rejected]: state => {
-      state.loadingStatus = false;
-    },
   },
 });
 

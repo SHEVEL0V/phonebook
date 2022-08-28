@@ -29,8 +29,6 @@ export default function Form() {
     }
   }, [error, loadingAdd]);
 
-  console.log('form', loadingAdd, error);
-
   return (
     <form
       className={s.form}

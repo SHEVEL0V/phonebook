@@ -7,24 +7,25 @@ import { incrementPage, decrementPage, updatePage } from '../../redux/pagination
 import s from './style.module.css';
 
 export default function Pagination() {
-  const currentPage = useSelector(pageSel);
+  const dispatch = useDispatch();
   const limit = useSelector(limitSel);
   const total = useSelector(totalSel);
-  const dispatch = useDispatch();
 
-  if (!total) {
-    return;
-  }
+  const currentPage = useSelector(pageSel);
+  const lastPage = total ? Math.ceil(total / limit) : null;
+  const pageOne = 1;
+  const pageTwo = pageOne + 1;
+  const pageFour = lastPage - 1;
 
-  const lastPage = Math.ceil(total / limit);
+  const buttonTwo = pageTwo >= currentPage && limit < total;
+  const buttonThree = currentPage > pageTwo && currentPage !== lastPage && currentPage < pageFour;
+  const buttonFour = currentPage >= pageFour && pageFour > pageTwo;
+  const buttonLast = lastPage > pageTwo;
 
-  const buttonOne = 1;
-  const buttonTwo = buttonOne + 1;
-  const buttonThree = currentPage;
-  const buttonFour = lastPage - 1;
-  const buttonLast = lastPage;
+  const pointBefor = currentPage > pageTwo && currentPage !== pageTwo && currentPage !== pageOne;
+  const pointAfter = currentPage < pageFour && currentPage !== pageFour;
 
-  const disabledINC = buttonLast <= currentPage;
+  const disabledINC = lastPage <= currentPage;
   const disabledDEC = currentPage === 1;
 
   const highlightСurrentPage = page => {
@@ -42,51 +43,51 @@ export default function Pagination() {
 
       <button
         className={s.button}
-        style={highlightСurrentPage(buttonOne)}
-        onClick={() => dispatch(updatePage(buttonOne))}
+        style={highlightСurrentPage(pageOne)}
+        onClick={() => dispatch(updatePage(pageOne))}
       >
-        {buttonOne}
+        {pageOne}
       </button>
 
-      {buttonTwo >= currentPage && limit < total && (
+      {buttonTwo && (
         <button
           className={s.button}
-          style={highlightСurrentPage(buttonTwo)}
-          onClick={() => dispatch(updatePage(buttonTwo))}
+          style={highlightСurrentPage(pageTwo)}
+          onClick={() => dispatch(updatePage(pageTwo))}
         >
-          {buttonTwo}
+          {pageTwo}
         </button>
       )}
 
-      {currentPage > buttonTwo && currentPage !== buttonTwo && <b>...</b>}
-      {currentPage > buttonTwo && currentPage !== buttonLast && currentPage < buttonFour && (
+      {pointBefor && <b>...</b>}
+      {buttonThree && (
         <button
           className={s.button}
-          style={highlightСurrentPage(buttonThree)}
-          onClick={() => dispatch(updatePage(buttonThree))}
+          style={highlightСurrentPage(currentPage)}
+          onClick={() => dispatch(updatePage(currentPage))}
         >
-          {buttonThree}
+          {currentPage}
         </button>
       )}
 
-      {currentPage < buttonFour && currentPage !== buttonFour && <b>...</b>}
-      {currentPage >= buttonFour && buttonFour > buttonTwo && (
+      {pointAfter && <b>...</b>}
+      {buttonFour && (
         <button
           className={s.button}
-          style={highlightСurrentPage(buttonFour)}
-          onClick={() => dispatch(updatePage(buttonFour))}
+          style={highlightСurrentPage(pageFour)}
+          onClick={() => dispatch(updatePage(pageFour))}
         >
-          {buttonFour}
+          {pageFour}
         </button>
       )}
 
-      {buttonLast !== buttonOne && buttonLast !== buttonTwo && (
+      {buttonLast && (
         <button
           className={s.button}
-          style={highlightСurrentPage(buttonLast)}
-          onClick={() => dispatch(updatePage(buttonLast))}
+          style={highlightСurrentPage(lastPage)}
+          onClick={() => dispatch(updatePage(lastPage))}
         >
-          {buttonLast}
+          {lastPage}
         </button>
       )}
 
