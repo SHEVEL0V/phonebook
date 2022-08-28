@@ -12,7 +12,7 @@ const Buttton = ({ text, onClick, disabled = false, type = 'button' }) => {
 export default Buttton;
 
 Buttton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   text: PropTypes.any.isRequired,
   disabled: PropTypes.bool,
   type: PropTypes.string,

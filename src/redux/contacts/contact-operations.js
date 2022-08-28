@@ -32,6 +32,17 @@ const addContact = createAsyncThunk('addContact', async contact => {
   }
 });
 
+const updateContact = createAsyncThunk('updateContact', async ({ id, contact }) => {
+  try {
+    const { data } = await axios.put(`/contacts/${id}`, contact);
+    return data;
+  } catch (err) {
+    const { message } = err.response.data.status[0];
+    Notify.failure(message);
+    throw new Error('update contacts error!');
+  }
+});
+
 const deleteContact = createAsyncThunk('deleteContact', async contact => {
   try {
     const { data } = await axios.delete(`/contacts/${contact}`);
@@ -54,4 +65,4 @@ const addStatusFavorite = createAsyncThunk('addStatusFavorite', async ({ id, fav
   }
 });
 
-export { getContact, addContact, deleteContact, addStatusFavorite };
+export { getContact, addContact, deleteContact, addStatusFavorite, updateContact };

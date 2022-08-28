@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  display: flex;
+}
+.container:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.input {
+  background-color: rgba(44, 120, 220, 0.144);
+
+  padding: 5px;
+  width: 100%;
+
+  color: black;
+
+  border: 2px solid rgba(0, 0, 0, 0.543);
+  border-radius: 3px;
+  border-left: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.text {
+  background-color: rgba(44, 120, 220, 0.144);
+  text-align: end;
+
+  width: 70px;
+  padding: 5px;
+
+  border: 2px solid rgba(0, 0, 0, 0.543);
+  border-radius: 3px;
+  border-right: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}

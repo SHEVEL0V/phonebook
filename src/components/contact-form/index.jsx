@@ -1,49 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ClipLoader from 'react-spinners/ClipLoader';
-import { useDispatch } from 'react-redux';
-import { useRef } from 'react';
 import { BsFillArrowRightSquareFill } from 'react-icons/bs';
+
 import { addContact } from 'redux/contacts/contact-operations';
-import { useSelector } from 'react-redux';
-import { loadingAddSel, dataSel } from 'redux/contacts/contacts-selectors';
+import { loadingAddSel, errorAddSel } from 'redux/contacts/contacts-selectors';
+
 import s from './style.module.css';
-import { useEffect } from 'react';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+
   const dispatch = useDispatch();
   const loadingAdd = useSelector(loadingAddSel);
-  const { contacts } = useSelector(dataSel);
+  const error = useSelector(errorAddSel);
   const selectRef = useRef();
 
   useEffect(() => {
     selectRef.current.focus();
-  }, []);
 
-  const onSubmit = () => {
-    removeState();
-
-    if (contacts.every(e => e.name.toLowerCase() !== name.toLowerCase())) {
-      dispatch(addContact({ name, phone, email }));
-    } else {
-      alert(`"${name}" is already in contact!`);
+    if (!error && !loadingAdd) {
+      setName('');
+      setPhone('');
+      setEmail('');
     }
-  };
+  }, [error, loadingAdd]);
 
-  const removeState = () => {
-    setName('');
-    setPhone('');
-    setEmail('');
-  };
+  console.log('form', loadingAdd, error);
 
   return (
     <form
       className={s.form}
       onSubmit={e => {
         e.preventDefault();
-        onSubmit();
+        dispatch(addContact({ name, phone, email }));
       }}
     >
       <label className={s.item}>
@@ -53,7 +46,6 @@ export default function Form() {
           type="text"
           name="name"
           ref={selectRef}
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={e => setName(e.target.value)}
           value={name}
@@ -65,7 +57,6 @@ export default function Form() {
           className={s.input}
           type="tel"
           name="phone"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={e => setPhone(e.target.value)}
           value={phone}

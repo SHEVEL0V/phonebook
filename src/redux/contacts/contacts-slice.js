@@ -1,12 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getContact, addContact, deleteContact, addStatusFavorite } from './contact-operations';
+import {
+  getContact,
+  addContact,
+  updateContact,
+  deleteContact,
+  addStatusFavorite,
+} from './contact-operations';
 
 const contactsInitialState = {
   data: [],
   loadingGet: false,
   loadingAdd: false,
+  loadingUpdate: false,
   loadingDelete: false,
   loadingStatus: false,
+  errorUpdate: false,
+  errorAdd: false,
   response: {},
   id: null,
 };
@@ -28,18 +37,34 @@ const contacts = createSlice({
       state.loadingGet = false;
     },
     [getContact.rejected]: state => {
-      state.loadingGet = false;
+      state.loadingGet = true;
     },
 
     [addContact.pending]: state => {
       state.loadingAdd = true;
+      state.errorAdd = false;
     },
     [addContact.fulfilled]: (state, { payload }) => {
       state.loadingAdd = false;
+      state.errorAdd = false;
       state.response = payload;
     },
     [addContact.rejected]: state => {
       state.loadingAdd = false;
+      state.errorAdd = true;
+    },
+    [updateContact.pending]: state => {
+      state.errorUpdate = false;
+      state.loadingUpdate = true;
+    },
+    [updateContact.fulfilled]: (state, { payload }) => {
+      state.loadingUpdate = false;
+      state.errorUpdate = false;
+      state.response = payload;
+    },
+    [updateContact.rejected]: state => {
+      state.errorUpdate = true;
+      state.loadingUpdate = false;
     },
     [deleteContact.pending]: state => {
       state.loadingDelete = true;
