@@ -19,7 +19,7 @@ const singnupUser = createAsyncThunk('user/register', async credentitals => {
   try {
     const { data } = await axios.post('/users/register', credentitals);
     Notify.success(data.message);
-    return {};
+    return data;
   } catch (err) {
     const { message } = err.response.data;
     Notify.failure(message);

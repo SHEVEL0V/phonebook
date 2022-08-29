@@ -1,6 +1,8 @@
 .container {
   width: 100%;
+  padding-left: 30px;
 }
+
 .item {
   list-style: none;
   display: flex;

@@ -33,7 +33,7 @@ export default function ContactsList() {
       <div className={s.spiner}>{loadingGet && <BeatLoader color={'rgb(41, 41, 204)'} />}</div>
 
       <ul>{contacts ? contacts.map(el => <ContactCard key={el._id} card={el} />) : []}</ul>
-      <Pagination />
+      {contacts && <Pagination />}
     </div>
   );
 }

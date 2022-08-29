@@ -2,17 +2,16 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: -10px;
-  margin-left: -10px;
-  margin-right: -10px;
+
   padding-left: 15px;
   padding-right: 15px;
   height: 80px;
 
-  background-color: rgba(19, 173, 81, 0.712);
+  background-color: rgba(23, 27, 29, 0.276);
   box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.2), -5px 5px 20px 5px rgba(0, 0, 0, 0.2),
     -5px -5px 20px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .container_nav {
   display: block;
@@ -28,7 +27,7 @@
   text-decoration: none;
 
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background-color: rgba(245, 245, 220, 0.47);
+  background-color: rgba(23, 27, 29, 0.276);
   color: rgba(0, 0, 0, 0.763);
 
   border-radius: 5px;
@@ -36,5 +35,5 @@
 }
 
 .nav:hover {
-  background-color: rgba(245, 245, 220, 0.87);
+  background-color: rgba(23, 27, 29, 0.376);
 }

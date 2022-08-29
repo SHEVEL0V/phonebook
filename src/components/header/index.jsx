@@ -15,14 +15,14 @@ export default function Header() {
           <NavLink
             to="/contacts"
             className={s.nav}
-            style={({ isActive }) => (isActive ? { color: 'rgba(255, 0, 0, 0.854)' } : {})}
+            style={({ isActive }) => (isActive ? { color: 'rgba(234, 221, 221, 0.85)' } : {})}
           >
             Contacts
           </NavLink>
           <NavLink
             to="/user"
             className={s.nav}
-            style={({ isActive }) => (isActive ? { color: 'rgba(255, 0, 0, 0.854)' } : {})}
+            style={({ isActive }) => (isActive ? { color: 'rgba(234, 221, 221, 0.85)' } : {})}
           >
             User
           </NavLink>

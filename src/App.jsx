@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Container from './components/container';
 import Header from 'components/header';
+import Footer from 'components/footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { isLoggedIn } from 'redux/user/user-selectors';
 import { fetchCurentUser } from 'redux/user/user-operations';
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="*" element={<h2>Address not found</h2>} />
         </Routes>
       </Suspense>
+      <Footer />
     </Container>
   );
 }
