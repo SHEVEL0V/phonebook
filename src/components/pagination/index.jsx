@@ -23,7 +23,7 @@ export default function Pagination() {
   const buttonLast = lastPage > pageTwo;
 
   const pointBefor = currentPage > pageTwo && currentPage !== pageTwo && currentPage !== pageOne;
-  const pointAfter = currentPage < pageFour && currentPage !== pageFour;
+  const pointAfter = currentPage < pageFour && currentPage !== pageFour && currentPage !== pageOne;
 
   const disabledINC = lastPage <= currentPage;
   const disabledDEC = currentPage === 1;
