@@ -41,8 +41,8 @@ const loginUser = createAsyncThunk('loginUser', async credentitals => {
 
 const repitSendMail = createAsyncThunk('repitSendMail', async email => {
   try {
-    const { data } = await axios.post('/users/verify', email);
-    Notify.failure(`Email send to email: ${email}`);
+    const { data } = await axios.post('/users/verify', { email: email });
+    Notify.success(`Email send to email: ${email}`);
     return data;
   } catch (err) {
     const { message } = err.response.data;
