@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   singnupUser,
   loginUser,
+  repitSendMail,
   logoutUser,
   fetchCurentUser,
   updateAvatar,
@@ -42,6 +43,15 @@ const user = createSlice({
       state.loading = false;
       state.user = payload.user;
       state.token = payload.token;
+    },
+    [repitSendMail.pending]: state => {
+      state.loading = true;
+    },
+    [repitSendMail.fulfilled]: state => {
+      state.loading = false;
+    },
+    [repitSendMail.rejected]: state => {
+      state.loading = false;
     },
     [loginUser.rejected]: state => {
       state.loading = false;

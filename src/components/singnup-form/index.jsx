@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import ClipLoader from 'react-spinners/ClipLoader';
+import MailRepit from 'components/mailRepit';
 import { loading } from 'redux/user/user-selectors';
 import { singnupUser } from 'redux/user/user-operations';
 import Buttton from 'components/button/button';
@@ -24,7 +25,7 @@ export default function SignupForm({ onClose }) {
       <button className={s.buttonClose} type="button" onClick={onClose}>
         <IoClose />
       </button>
-      <label className={s.items}>
+      <label className={s.item}>
         name:
         <input
           className={s.input}
@@ -34,7 +35,7 @@ export default function SignupForm({ onClose }) {
           value={name}
         ></input>
       </label>
-      <label className={s.items}>
+      <label className={s.item}>
         email:
         <input
           className={s.input}
@@ -44,7 +45,7 @@ export default function SignupForm({ onClose }) {
           value={email}
         ></input>
       </label>
-      <label className={s.items}>
+      <label className={s.item}>
         password:
         <input
           className={s.input}
@@ -61,6 +62,7 @@ export default function SignupForm({ onClose }) {
         disabled={name === '' || email === '' || password === ''}
         onClick={onSubmit}
       />
+      <MailRepit />
     </form>
   );
 }

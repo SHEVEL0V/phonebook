@@ -39,6 +39,18 @@ const loginUser = createAsyncThunk('loginUser', async credentitals => {
   }
 });
 
+const repitSendMail = createAsyncThunk('repitSendMail', async email => {
+  try {
+    const { data } = await axios.post('/users/verify', email);
+    Notify.failure(`Email send to email: ${email}`);
+    return data;
+  } catch (err) {
+    const { message } = err.response.data;
+    Notify.failure(message);
+    throw new Error('Error is emait not found');
+  }
+});
+
 const logoutUser = createAsyncThunk('logoutUser', () => {
   token.unset('none');
 });
@@ -79,4 +91,4 @@ const fetchCurentUser = createAsyncThunk('fetchCurentUser', async (_, thunkAPI) 
   }
 });
 
-export { singnupUser, loginUser, logoutUser, fetchCurentUser, updateAvatar };
+export { singnupUser, loginUser, repitSendMail, logoutUser, fetchCurentUser, updateAvatar };
