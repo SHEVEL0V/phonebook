@@ -7,13 +7,18 @@ export default function MailRepit() {
   const [status, setStatus] = useState(false);
   const [email, setEmail] = useState(false);
   const dispatch = useDispatch();
+  const sendMail = () => {
+    if (email) {
+      dispatch(repitSendMail(email));
+    }
+  };
   return (
     <div className={s.container}>
-      repite send mail auntefikations:
+      Repite send mail auntefikations:
       <button
         className={s.button}
         type="button"
-        onClick={() => (status ? dispatch(repitSendMail(email)) : setStatus(!status))}
+        onClick={() => (status ? sendMail() : setStatus(!status))}
       >
         {status ? 'send' : 'open'}
       </button>

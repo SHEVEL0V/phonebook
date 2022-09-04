@@ -1,29 +1,29 @@
 .container {
+  display: flex;
   padding: 30px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
-}
-.img {
-  max-width: 500px;
-  margin-bottom: 20px;
-  border: solid;
-  border-radius: 10%;
-}
-.text {
+
   width: 500px;
   padding: 10px;
   font-size: 20px;
   margin-bottom: 20px;
   border: solid;
-  border-radius: 3px;
-  background-color: azure;
+  border-radius: 10px;
+  background-color: rgba(57, 69, 110, 0.274);
+}
+.img {
+  width: 30%;
+  margin-right: 20px;
+  border: solid;
+  border-radius: 10%;
 }
 
 .fileInput {
   width: 100px;
   height: 40px;
   background-color: bisque;
-}
-
-.button {
 }

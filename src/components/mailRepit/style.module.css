@@ -3,6 +3,9 @@
   flex-wrap: wrap;
   align-items: center;
   margin-top: 20px;
+
+  font-size: 11px;
+  font-weight: 700;
 }
 .input {
   width: 100%;
@@ -15,7 +18,7 @@
   align-items: center;
   justify-content: center;
   width: 60px;
-  height: 20px;
+  height: 15px;
   margin-left: 10px;
 
   border-radius: 5px;
@@ -25,6 +28,9 @@
   font-size: 14px;
   transition: all 0.25s cubic-bezier(0.79, 0.33, 0.14, 0.53);
   cursor: pointer;
+
+  font-size: 11px;
+  font-weight: 700;
 }
 .button:active {
   background-color: beige;

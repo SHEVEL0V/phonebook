@@ -17,27 +17,28 @@ export default function UserPage() {
   return (
     <div className={s.container}>
       <img className={s.img} src={avatarURL} alt="avatar" />
-      <form className={s.text} onChange={onSubmit}>
-        <input type="file" name="file" />
+      <form className={s.form} onChange={onSubmit}>
+        <label>
+          <input type="file" name="file" />
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => {
+              dispatch(updateAvatar(file));
+            }}
+          >
+            add photo
+          </button>
+        </label>
 
-        <button
-          className={s.button}
-          type="button"
-          onClick={() => {
-            dispatch(updateAvatar(file));
-          }}
-        >
-          add photo
-        </button>
+        <b className={s.text}>Name: {name}</b>
+        <b className={s.text}>
+          Email:
+          <a target="blank" href={email}>
+            {email}
+          </a>
+        </b>
       </form>
-
-      <b className={s.text}>Name: {name}</b>
-      <b className={s.text}>
-        Email:
-        <a target="blank" href={email}>
-          {email}
-        </a>
-      </b>
     </div>
   );
 }

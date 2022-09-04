@@ -1,13 +1,12 @@
 .form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 450px;
   position: relative;
 
   padding: 20px;
-  padding-top: 40px;
+  padding: 40px;
 
-  margin-left: auto;
   align-items: center;
   border-radius: 10px;
 
@@ -16,7 +15,7 @@
 
 .item {
   display: block;
-  margin-right: 40px;
+
   width: 100%;
 }
 .input {
@@ -43,15 +42,4 @@
 }
 .buttonClose:active {
   background-color: rgba(0, 0, 0, 0.316);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 250px;
-  margin-left: 50px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 255, 0.227);
 }
