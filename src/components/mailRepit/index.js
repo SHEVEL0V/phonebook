@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { repitSendMail } from 'redux/user/user-operations';
 import s from './style.module.css';
 
-export default function MailRepit(params) {
+export default function MailRepit() {
   const [status, setStatus] = useState(false);
   const [email, setEmail] = useState(false);
   const dispatch = useDispatch();
