@@ -6,6 +6,8 @@
 .form {
   display: flex;
   flex-direction: column;
+  column-gap: 20px;
+  row-gap: 20px;
 
   width: 500px;
   padding: 10px;
