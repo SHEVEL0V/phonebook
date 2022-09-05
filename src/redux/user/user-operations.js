@@ -1,19 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-const USERS_URL = 'https://api-shevelov.herokuapp.com/api';
-
-axios.defaults.baseURL = USERS_URL;
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+import { token } from 'service/axios';
 
 const singnupUser = createAsyncThunk('user/register', async credentitals => {
   try {
